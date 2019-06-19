@@ -8,6 +8,9 @@ router.get("/", (req, res) => {
   res.render("home", { title: "home" });
 });
 
+router.get("/administrar", (req,res) => {
+  res.render("administrar", { title: (req,res)});
+})
 
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {

@@ -28,12 +28,11 @@ controller.GetMovie = async function(callback){
 controller.UpdateMovie = async function (data){
     let response = Movie.update({
         DESCRIPTION: data.DESCRIPTION,
-        Movie_ID: data.Movie_ID,
         DURATION: data.DURATION,
         RELEASE_DATE: data.RELEASE_DATE
     },{
         where:{
-            titulo: data.TITLE
+            TITLE: data.TITLE
         }
     });
 }

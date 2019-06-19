@@ -47,9 +47,9 @@ router.get("/modificar-pelicula", (req,res)=>{
 
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
-    if(!!req.body.titulo){ 
-      console.log(req.body.titulo);
-      movieController.UpdateMovie(req.body,req.body.titulo);
+    if(!!req.body.TITLE){ 
+      console.log(req.body.TITLE);
+      movieController.UpdateMovie(req.body,req.body.TITLE);
   }
   res.redirect('/get-peliculas');
 });

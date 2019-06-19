@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const SCREENING = require("./Screening");
 
 const MOVIE_REPERTORY = sequelize.define("MOVIE_REPERTORY", {
     //MOVIE_ID

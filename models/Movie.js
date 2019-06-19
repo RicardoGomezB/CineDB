@@ -1,14 +1,12 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const MOVIE_REPERTORY = require("./Movie_Repertory");
+const SUBTITLES = require("./Subtitles");
 
-<<<<<<< HEAD
 const MOVIE = sequelize.define("MOVIE", {
-=======
-const Movie = sequelize.define("Movie", {
->>>>>>> origin/Ricardo
     //GENRE_ID
-    Movie_ID: {
+    MOVIE_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,

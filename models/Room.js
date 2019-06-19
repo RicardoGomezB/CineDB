@@ -1,6 +1,9 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const ROOM_IN_MAINTENANCE = require("./Room_In_Maintenance");
+const SCREENING = require("./Screening");
+const SEATS = require("./Seats");
 
 const ROOM = sequelize.define("ROOM", {
     //THEATER_ID

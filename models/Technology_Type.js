@@ -15,4 +15,8 @@ const User = sequelize.define("Technology_Type", {
     }
   });
   
+<<<<<<< HEAD
   module.exports = THEATER;
+=======
+  module.exports = Technology_Type;
+>>>>>>> 23c1bbeaec5c890abb4f3c3e786d79f024ab6c3f

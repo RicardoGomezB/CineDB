@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR PELÍCULA
+
+        // register form
+        form(method='POST' action='/createMovie')
+          div.form-group
+            label(for='TITLE') Título:
+            input(type='text', name="TITLE", id="TITLE",class="form-control")
+          div.form-group
+            label(for='DESCRIPTION') Descripción:
+            input(type='text', id="DESCRIPTION", name='DESCRIPTION', class="form-control")
+          div.form-group
+            label(for='DURATION') Duracion:
+            input(type='number', placeholder = 'Minutos' name='DURATION', id ='DURATION', class='form-control')
+          div.form-group
+            label(for='RELEASE_DATE') Fecha de estreno:
+            input(type='date',  name='RELEASE_DATE', id="RELEASE_DATE", class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

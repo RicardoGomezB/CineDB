@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Movie", {
+const Movie = sequelize.define("Movie", {
     //GENRE_ID
     Movie_ID: {
       type: Sequelize.INTEGER,

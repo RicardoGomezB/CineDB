@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Room_Type", {
+const ROOM_TYPE = sequelize.define("ROOM_TYPE", {
     ROOM_TYPE_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -13,6 +13,12 @@ const User = sequelize.define("Room_Type", {
         type: Sequelize.STRING,
         allowNull: false,
     }
-  });
-  
-  module.exports = Room_Type;
+  },
+  {
+    underscored: true
+  }
+);
+
+ROOM_TYPE.hasMany(ROOM, {foreignKey: 'ROOM_TYPE_ID'});
+
+module.exports = ROOM_TYPE;

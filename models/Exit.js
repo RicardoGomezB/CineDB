@@ -2,17 +2,21 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const GENRE = sequelize.define("GENRE", {
-    GENRE_ID: {
+const EXIT = sequelize.define("EXIT", {
+    EXIT_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    GENRE: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+    LEFT: {
+        type: Sequelize.TINYINT(1),
+    },
+    RIGHT: {
+        type: Sequelize.TINYINT(1),
+    },
+    CENTER: {
+        type: Sequelize.TINYINT(1),
     }
   },
   {
@@ -20,6 +24,6 @@ const GENRE = sequelize.define("GENRE", {
   }
 );
   
-GENRE.hasMany(MOVIE, {foreignKey: 'GENRE_ID'});
+EXIT.hasMany(ROOM, {foreignKey: 'EXIT_ID'});
 
-module.exports = GENRE;
+module.exports = EXIT;

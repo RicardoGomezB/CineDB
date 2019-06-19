@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Seats", {
+const SEATS = sequelize.define("SEATS", {
     //ROOM_ID
     SEATS_ID: {       
       type: Sequelize.INTEGER,
@@ -18,6 +18,12 @@ const User = sequelize.define("Seats", {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-  });
-  
-  module.exports = Seats;
+  },
+  {
+    underscored: true
+  }
+);
+
+SEATS.hasMany(OCCUPIED_SEATS, {foreignKey: 'SEAT_ID'})
+
+module.exports = SEATS;

@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Censorship_Level", {
+const CENSORSHSIP_LEVEL = sequelize.define("CENSORSHSIP_LEVEL", {
     CENSORSHSIP_LEVEL_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -13,7 +13,17 @@ const User = sequelize.define("Censorship_Level", {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
-    }
-  });
-  
-  module.exports = Censorship_Level;
+    },
+
+  }, 
+  {
+    indexes: [
+      {
+        unique: true,
+        fields: [DESCRIPTION]
+      }
+    ],
+    underscored: true
+  }
+);
+module.exports = CENSORSHSIP_LEVEL;

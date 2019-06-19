@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Movie_Repertory", {
+const MOVIE_REPERTORY = sequelize.define("MOVIE_REPERTORY", {
     //MOVIE_ID
     //THETER_ID
     //CENSORSHIP_LEVEL_ID
@@ -23,6 +23,18 @@ const User = sequelize.define("Movie_Repertory", {
         type: Sequelize.DATE,
         allowNull: false
     }
-  });
-  
-  module.exports = Movie_Repertory;
+  },
+  {
+    indexes: [
+      {
+        unique: true,
+        fields: [MOVIE_ID, THEATER_ID, LANGUAGE_ID, SUBTITLES_LANGUAGE_ID]     
+      }
+    ],
+    underscored: true
+  }
+);
+
+MOVIE_REPERTORY.hasMany(SCREENING, {foreignKey: 'MOVIE_REPERTORY_ID'});
+
+module.exports = MOVIE_REPERTORY;

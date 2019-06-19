@@ -2,7 +2,11 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
+<<<<<<< HEAD
 const Movie = sequelize.define("Movie", {
+=======
+const MOVIE = sequelize.define("MOVIE", {
+>>>>>>> 1f3788919f3691f227be3fc7ccd4b8706e03ea1f
     //GENRE_ID
     Movie_ID: {
       type: Sequelize.INTEGER,
@@ -26,6 +30,13 @@ const Movie = sequelize.define("Movie", {
         type: Sequelize.DATE,
         allowNull: true
     },
-  });
-  
-  module.exports = Movie;
+  },
+  {
+    underscored: true
+  }
+);
+
+MOVIE.hasMany(MOVIE_REPERTORY, {foreignKey: 'MOVIE_ID'});
+MOVIE.hasMany(SUBTITLES, {foreignKey: 'MOVIE_ID'});
+
+module.exports = MOVIE;

@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Screening", {
+const SCREENING = sequelize.define("SCREENING", {
     //MOVIE_REPERTORY_ID
     //ROOM_ID
     SCREENING_ID: {
@@ -19,6 +19,18 @@ const User = sequelize.define("Screening", {
         type: Sequelize.DATE,
         allowNull: false
     }
-  });
-  
-  module.exports = Screening;
+  },
+  {
+    underscored: true,
+    indexes: [
+      {
+        unique: true,
+        fields: [ROOM_ID, SCREENING_START_TIME, DATE]
+      }
+    ]
+  }
+);
+
+SCREENING.hasMany(OCCUPIED_SEATS, {foreignKey: 'SCREENING_ID'});
+
+module.exports = SCREENING;

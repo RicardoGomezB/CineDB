@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Fact_Sales", {
+const FACT_SALES = sequelize.define("FACT_SALES", {
     INVOICE_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -29,6 +29,10 @@ const User = sequelize.define("Fact_Sales", {
         type: Sequelize.DATE,
         allowNull: false
     }
-  });
-  
-  module.exports = Fact_Sales;
+  },
+  {
+      underscored: true
+  }
+);
+
+module.exports = FACT_SALES;

@@ -3,12 +3,16 @@ Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const Movie = sequelize.define("Movie", {
 =======
 const MOVIE = sequelize.define("MOVIE", {
 >>>>>>> 1f3788919f3691f227be3fc7ccd4b8706e03ea1f
+=======
+const MOVIE = sequelize.define("MOVIE", {
+>>>>>>> 576220b9a205ea65c45a7f6c824d408521d0188a
     //GENRE_ID
-    Movie_ID: {
+    MOVIE_ID: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,

@@ -35,4 +35,5 @@ const FACT_SALES = sequelize.define("FACT_SALES", {
   }
 );
 
+FACT_SALES.sync();
 module.exports = FACT_SALES;

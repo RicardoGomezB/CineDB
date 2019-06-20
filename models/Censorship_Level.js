@@ -26,4 +26,6 @@ const CENSORSHSIP_LEVEL = sequelize.define("CENSORSHSIP_LEVEL", {
     underscored: true
   }
 );
+
+CENSORSHSIP_LEVEL.sync();
 module.exports = CENSORSHSIP_LEVEL;

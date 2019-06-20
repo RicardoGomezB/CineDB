@@ -21,4 +21,5 @@ const COMBO = sequelize.define("COMBO", {
   }
 ); 
   
+COMBO.sync();
 module.exports = COMBO;

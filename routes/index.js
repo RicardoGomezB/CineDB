@@ -2,13 +2,6 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
-<<<<<<< HEAD
-
-router.get("/", (req, res) => {
-  res.render("layout", { title: "Layout" });
-});
-
-=======
 const movieController = require("../controllers/moviecontroller");
 
 router.get("/", (req, res) => {
@@ -80,7 +73,6 @@ router.post("/delete-pelicula",(req,res)=>{
 });
 /*-------------------------------------------------------------*/
 
->>>>>>> 23c1bbeaec5c890abb4f3c3e786d79f024ab6c3f
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });

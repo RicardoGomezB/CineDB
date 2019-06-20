@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const ROOM = require("./Room");
 
 const ENTRANCE = sequelize.define("ENTRANCE", {
     ENTRANCE_ID: {
@@ -23,4 +24,5 @@ const ENTRANCE = sequelize.define("ENTRANCE", {
   
 ENTRANCE.hasMany(ROOM, {foreignKey: 'ENTRANCE_ID'});
 
+ENTRANCE.sync();
 module.exports = ENTRANCE;

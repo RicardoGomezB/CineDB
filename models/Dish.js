@@ -1,23 +1,23 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const COMBO = require("./Combo");
+const Combo = require("./Combo");
 
-
-const DISH = sequelize.define("DISH", {
-    DISH_ID: {
+const Dish = sequelize.define("Dish", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     }
+  //Dish_type_id
   },
   {
     underscored: true
   }
 );
 
-DISH.hasMany(COMBO, {foreignKey: 'DISH_ID'});
+Dish.hasMany(Combo, {as: 'Combos', foreignKey: 'Dish_id'});
 
-DISH.sync();
-module.exports = DISH;
+Dish.sync();
+module.exports = Dish;

@@ -1,37 +1,38 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const GENRE = require("./Genre");
+const Movie_repertory = require("./Movie_repertory");
+const Subtitle = require("./Subtitle");
 
-const MOVIE = sequelize.define("MOVIE", {
+const Movie = sequelize.define("Movie", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
+      },
     //GENRE_ID
-    GENRE_ID: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: GENRE,
-        key: 'GENRE_ID'
-      }
-    },
-    MOVIE_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
-    },
-    TITLE: {
+    // GENRE_ID: {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false,
+    //   references: {
+    //     model: GENRE,
+    //     key: 'GENRE_ID'
+    //   }
+    // }
+    Title: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    DESCRIPTION: {
+    Description: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    DURATION: {
+    Duration: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    RELEASE_DATE: {
+    Release_date: {
         type: Sequelize.DATE,
         allowNull: true
     },
@@ -41,8 +42,8 @@ const MOVIE = sequelize.define("MOVIE", {
   }
 );
 
-// MOVIE.hasMany(MOVIE_REPERTORY, {foreignKey: 'MOVIE_ID'});
-// MOVIE.hasMany(SUBTITLES, {foreignKey: 'MOVIE_ID'});
+Movie.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Movie_id'});
+Movie.hasMany(Subtitle, {as: 'Subtitles', foreignKey: 'Movie_id'});
 
-MOVIE.sync();
-module.exports = MOVIE;
+Movie.sync();
+module.exports = Movie;

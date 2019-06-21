@@ -2,30 +2,24 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const FACT_SALES = sequelize.define("FACT_SALES", {
-    INVOICE_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
-    },
-    PRODUCT_ID: {
+const Fact_sale = sequelize.define("Fact_sales", {
+    Product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    MOVIE_ID: {
+    Movie_id: {
         type: Sequelize.INTEGER,
     },
-    THETAER_ID: {
+    Theater_id: {
         type: Sequelize.INTEGER,
     },
-    QUANTITY: {
+    Quantity: {
         type: Sequelize.INTEGER,
     },
-    WEEK: {
+    Week: {
         type: Sequelize.STRING
     },
-    DATE: {
+    Date: {
         type: Sequelize.DATE,
         allowNull: false
     }
@@ -35,5 +29,5 @@ const FACT_SALES = sequelize.define("FACT_SALES", {
   }
 );
 
-FACT_SALES.sync();
-module.exports = FACT_SALES;
+Fact_sale.sync();
+module.exports = Fact_sale;

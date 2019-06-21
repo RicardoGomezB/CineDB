@@ -1,31 +1,31 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-// const ROOM = require("./Room");
-// const MOVIE_REPERTORY = require("./Movie_Repertory");
-// const COMBO = require("./Combo");
+const Room = require("./Room");
+const Movie_repertory = require("./Movie_Repertory");
+const Combo = require("./Combo");
 
-const THEATER = sequelize.define("THEATER", {
-    THEATER_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
+const Theater = sequelize.define("Theater", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
-    FISCAL_NAME: {
+    Fiscal_name: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-    OPENING_TIME: {
+    Opening_time: {
         type: Sequelize.TIME,
         allowNull: false
     },
-    CLOSING_TIME: {
+    Closing_time: {
         type: Sequelize.TIME,
         allowNull: false
     },
-    LOCATION: {
+    Location: {
         type: Sequelize.STRING,
         allowNull: true
     },
@@ -35,9 +35,9 @@ const THEATER = sequelize.define("THEATER", {
   }
 );
 
-// THEATER.hasMany(ROOM, {foreignKey: 'THEATER_ID'});
-// THEATER.hasMany(MOVIE_REPERTORY, {foreignKey: 'THEATER_ID'});
-// THEATER.hasMany(COMBO, {foreignKey: 'THEATER_ID'});
+Theater.hasMany(Room, {as: 'Rooms', foreignKey: 'Theater_id'});
+Theater.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Theater_id'});
+Theater.hasMany(Combo, {as: 'Combos', foreignKey: 'Theater_id'});
 
-THEATER.sync();
-module.exports = THEATER;
+Theater.sync();
+module.exports = Theater;

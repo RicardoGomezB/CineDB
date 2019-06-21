@@ -1,19 +1,19 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const ROOM = require("./Room");
+const Room = require("./Room");
 
-const ENTRANCE = sequelize.define("ENTRANCE", {
-    ENTRANCE_ID: {
+const Entrance = sequelize.define("Entrance", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    LEFT: {
+    Left: {
         type: Sequelize.TINYINT(1),
     },
-    RIGHT: {
+    Right: {
         type: Sequelize.TINYINT(1),
     }
   },
@@ -22,7 +22,7 @@ const ENTRANCE = sequelize.define("ENTRANCE", {
   }
 );
   
-ENTRANCE.hasMany(ROOM, {foreignKey: 'ENTRANCE_ID'});
+Entrance.hasMany(Room, {as: 'Rooms', foreignKey: 'Entrance_id'});
 
-ENTRANCE.sync();
-module.exports = ENTRANCE;
+Entrance.sync();
+module.exports = Entrance;

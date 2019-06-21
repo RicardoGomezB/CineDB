@@ -1,16 +1,16 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-// const MOVIE = require("./Movie");
+const Movie = require("./Movie");
 
-const GENRE = sequelize.define("GENRE", {
-    GENRE_ID: {
+const Genre = sequelize.define("Genre", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    GENRE: {
+    Genre: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -21,7 +21,7 @@ const GENRE = sequelize.define("GENRE", {
   }
 );
   
-// GENRE.hasMany(MOVIE, {foreignKey: 'GENRE_ID'});
+Genre.hasMany(Movie, {as: 'Movies', foreignKey: 'Genre_id'});
 
-GENRE.sync();
-module.exports = GENRE;
+Genre.sync();
+module.exports = Genre;

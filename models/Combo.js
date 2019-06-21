@@ -2,8 +2,8 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const COMBO = sequelize.define("COMBO", {
-    COMBO_ID: {
+const Combo = sequelize.define("Combo", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -14,12 +14,12 @@ const COMBO = sequelize.define("COMBO", {
     indexes: [
       {
         unique: true,
-        fields: [COMBO_ID, DISH_ID, THEATER_ID]
+        fields: [id, Dish_id, Theater_id]
       }
     ],
     underscored: true
   }
-); 
+);
   
-COMBO.sync();
-module.exports = COMBO;
+Combo.sync();
+module.exports = Combo;

@@ -2,18 +2,23 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Genre", {
-    GENRE_ID: {
+const Genre = sequelize.define("Genre", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    GENRE: {
+    Genre: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     }
-  });
+  },
+  {
+    underscored: true
+  }
+);
   
-  module.exports = Genre;
+Genre.sync();
+module.exports = Genre;

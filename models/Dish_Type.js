@@ -2,17 +2,23 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Dish_Type", {
-    DISH_TYPE_ID: {
+const Dish_type = sequelize.define("Dish_type", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    DESCRIPTION: {
+    Description: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
     }
-  });
-  
-  module.exports = Dish_Type;
+  },
+  {
+    underscored: true
+  }
+);
+
+Dish_type.sync();
+module.exports = Dish_type;

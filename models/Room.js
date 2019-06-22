@@ -1,29 +1,34 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const Theater = require("./Theater");
+const Room_type = require("./Room_type");
+const Technology_type = require("./Technology_type");
+const Aisle = require("./Aisle");
+const Exit = require("./Exit");
+const Entrance = require("./Entrance");
 
-const User = sequelize.define("Room", {
-    //THEATER_ID
-    //TECHNOLOGY_TYPE_ID
-    //ROOM_TYPE_ID
-    ROOM_ID: {
+const Room = sequelize.define("Room", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
-    },
-    EXITS: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    ENTRANCE: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    AISLE: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-    },
-  });
-  
-  module.exports = Room;
+    }
+  },
+  {
+    underscored: true
+  }
+);
+
+
+
+Theater.hasMany(Room, {as: 'Rooms', foreignKey: 'Theater_id'});
+Room_type.hasMany(Room, {as: 'Rooms', foreignKey: 'Room_type_id'});
+Technology_type.hasMany(Room, {as: 'Rooms', foreignKey: 'Technology_type_id'});
+Aisle.hasMany(Room, {as: 'Rooms', foreignKey: 'Aisle_id'});
+Exit.hasMany(Room, {as: 'Rooms', foreignKey: 'Exit_id'});
+Entrance.hasMany(Room, {as: 'Rooms', foreignKey: 'Entrance_id'});
+
+Room.sync();
+module.exports = Room;

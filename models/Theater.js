@@ -2,30 +2,35 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Theater", {
-    THEATER_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
+const Theater = sequelize.define("Theater", {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true
     },
-    FISCAL_NAME: {
+    Fiscal_name: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-    OPENING_TIME: {
+    Opening_time: {
         type: Sequelize.TIME,
         allowNull: false
     },
-    CLOSING_TIME: {
+    Closing_time: {
         type: Sequelize.TIME,
         allowNull: false
     },
-    LOCATION: {
+    Location: {
         type: Sequelize.STRING,
         allowNull: true
     },
-  });
-  
-  module.exports = Theater;
+  },
+  {
+      underscored: true
+  }
+);
+
+Theater.sync();
+module.exports = Theater;

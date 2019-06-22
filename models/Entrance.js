@@ -1,27 +1,27 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Dish_type = require("./Dish_type");
 
-const Dish = sequelize.define("Dish", {
+const Entrance = sequelize.define("Entrance", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    description: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true
+    Left: {
+        type: Sequelize.TINYINT(1),
+        unique: 'Entrance_combination_idx'
+    },
+    Right: {
+        type: Sequelize.TINYINT(1),
+        unique: 'Entrance_combination_idx'
     }
   },
   {
     underscored: true
   }
 );
-
-Dish_type.hasMany(Dish, {as: 'Dishes', foreignKey: 'Dish_type_id'});
-
-Dish.sync();
-module.exports = Dish;
+  
+Entrance.sync();
+module.exports = Entrance;

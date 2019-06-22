@@ -2,17 +2,17 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const User = sequelize.define("Room_Type", {
-    ROOM_TYPE_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
-    },
-    DESCRIPTION: {
+const Room_type = sequelize.define("Room_type", {
+    Description: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
     }
-  });
-  
-  module.exports = Room_Type;
+  },
+  {
+    underscored: true
+  }
+);
+
+Room_type.sync();
+module.exports = Room_type;

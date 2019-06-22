@@ -1,15 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authController");
-const userController = require("../controllers/userController");
-<<<<<<< HEAD
-
-router.get("/", (req, res) => {
-  res.render("layout", { title: "Layout" });
-});
-
-=======
-const movieController = require("../controllers/moviecontroller");
+const authController = require("../controllers/Auth_controller");
+const userController = require("../controllers/User_controller");
+const movieController = require("../controllers/Movie_controller");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -54,9 +47,9 @@ router.get("/modificar-pelicula", (req,res)=>{
 
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
-    if(!!req.body.titulo){ 
-      console.log(req.body.titulo);
-      movieController.UpdateMovie(req.body,req.body.titulo);
+    if(!!req.body.TITLE){ 
+      console.log(req.body.TITLE);
+      movieController.UpdateMovie(req.body,req.body.TITLE);
   }
   res.redirect('/get-peliculas');
 });
@@ -80,7 +73,6 @@ router.post("/delete-pelicula",(req,res)=>{
 });
 /*-------------------------------------------------------------*/
 
->>>>>>> 23c1bbeaec5c890abb4f3c3e786d79f024ab6c3f
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });

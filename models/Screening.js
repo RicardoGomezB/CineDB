@@ -1,24 +1,38 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const Movie_repertory = require("./Movie_Repertory");
+const Room = require("./Room");
 
-const User = sequelize.define("Screening", {
-    //MOVIE_REPERTORY_ID
-    //ROOM_ID
-    SCREENING_ID: {
+const Screening = sequelize.define("Screening", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    SCREENING_START_TIME: {
+    Start_time: {
         type: Sequelize.TIME,
         allowNull: false,
     },
-    DATE: {
+    Date: {
         type: Sequelize.DATE,
         allowNull: false
     }
-  });
-  
-  module.exports = Screening;
+  },
+  {
+    underscored: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ['Room_id', 'Start_time', 'Date']
+      }
+    ]
+  }
+);
+
+Movie_repertory.hasMany(Screening, {as: 'Screenings', foreignKey: 'Movie_repertory_id'});
+Room.hasMany(Screening, {as: 'Screenings', foreignKey: 'Room_id'});
+
+Screening.sync();
+module.exports = Screening;

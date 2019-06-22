@@ -1,23 +1,30 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const Room = require("./Room");
 
-const User = sequelize.define("Seats", {
-    //ROOM_ID
-    SEATS_ID: {       
+const Seat = sequelize.define("Seat", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
-    },
-    ROW: {
+    }, 
+    Row: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    COLUMN: {
+    Column: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-  });
-  
-  module.exports = Seats;
+  },
+  {
+    underscored: true
+  }
+);
+
+Room.hasMany(Seat, {as: 'Seats', foreignKey: 'Room_id'});
+
+Seat.sync();
+module.exports = Seat;

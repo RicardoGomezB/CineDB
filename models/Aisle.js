@@ -2,20 +2,20 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const AISLE = sequelize.define("AISLE", {
-    AISLE_ID: {
+const Aisle = sequelize.define("Aisle", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    LEFT: {
+    Left: {
         type: Sequelize.TINYINT(1),
     },
-    RIGHT: {
+    Right: {
         type: Sequelize.TINYINT(1),
     },
-    CENTER: {
+    Center: {
         type: Sequelize.TINYINT(1),
     }
   },
@@ -23,7 +23,6 @@ const AISLE = sequelize.define("AISLE", {
     underscored: true
   }
 );
-  
-AISLE.hasMany(ROOM, {foreignKey: 'AISLE_ID'});
 
-module.exports = AISLE;
+Aisle.sync();
+module.exports = Room;

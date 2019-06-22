@@ -1,26 +1,24 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const SCREENING = require("./Screening");
+const Subtitle = require("./Subtitle");
+const Language = require("./Language");
+const Theater = require("./Theater");
+const Censorship_level = require("./Censorship_level");
+const Movie = require("./Movie");
 
-const MOVIE_REPERTORY = sequelize.define("MOVIE_REPERTORY", {
-    //MOVIE_ID
-    //THETER_ID
-    //CENSORSHIP_LEVEL_ID
-    //LANGUAGE_ID
-    //SUBTITLE_LANGUAGE_ID
-
-    MOVIE_REPERTORY_ID: {
+const Movie_repertory = sequelize.define("Movie_repertory", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    START_DATE: {
+    Start_date: {
         type: Sequelize.DATE,
         allowNull: false,
     },
-    END_DATE: {
+    End_date: {
         type: Sequelize.DATE,
         allowNull: false
     }
@@ -29,13 +27,18 @@ const MOVIE_REPERTORY = sequelize.define("MOVIE_REPERTORY", {
     indexes: [
       {
         unique: true,
-        fields: [MOVIE_ID, THEATER_ID, LANGUAGE_ID, SUBTITLES_LANGUAGE_ID]     
+        fields: [Movie_id, Theater_id, Language_id, Subtitle_id]     
       }
     ],
     underscored: true
   }
 );
 
-MOVIE_REPERTORY.hasMany(SCREENING, {foreignKey: 'MOVIE_REPERTORY_ID'});
+Movie.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Movie_id'});
+Theater.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Theater_id'});
+Subtitle.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Subtitle_id'});
+Censorship_level.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Censorship_level_id'});
+Language.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Language_id'});
 
-module.exports = MOVIE_REPERTORY;
+Movie_repertory.sync();
+module.exports = Movie_repertory;

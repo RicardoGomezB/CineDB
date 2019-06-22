@@ -2,20 +2,20 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const EXIT = sequelize.define("EXIT", {
-    EXIT_ID: {
+const Exit = sequelize.define("Exit", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    LEFT: {
+    Left: {
         type: Sequelize.TINYINT(1),
     },
-    RIGHT: {
+    Right: {
         type: Sequelize.TINYINT(1),
     },
-    CENTER: {
+    Center: {
         type: Sequelize.TINYINT(1),
     }
   },
@@ -24,6 +24,5 @@ const EXIT = sequelize.define("EXIT", {
   }
 );
   
-EXIT.hasMany(ROOM, {foreignKey: 'EXIT_ID'});
-
-module.exports = EXIT;
+Exit.sync();
+module.exports = Exit;

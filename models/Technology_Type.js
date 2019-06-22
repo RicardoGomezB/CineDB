@@ -2,16 +2,16 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const TECHNOLOGY_TYPE = sequelize.define("TECHNOLOGY_TYPE", {
-    TECHNOLOGY_TYPE_ID: {
+const Technology_type = sequelize.define("Technology_type", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    DESCRIPTION: {
-        type: Sequelize.STRING,
-        allowNull: false,
+    Description: {
+      type: Sequelize.STRING,
+      allowNull: false,
     }
   },
   {
@@ -19,6 +19,5 @@ const TECHNOLOGY_TYPE = sequelize.define("TECHNOLOGY_TYPE", {
   }
 );
 
-TECHNOLOGY_TYPE.hasMany(ROOM, {foreignKey: 'TECHNOLOGY_TYPE_ID'})
-
-module.exports = TECHNOLOGY_TYPE;
+Technology_type.sync();
+module.exports = Technology_type;

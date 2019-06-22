@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
+<<<<<<< HEAD
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 const movieController = require("../controllers/moviecontroller");
 const theaterController = require("../controllers/theaterController");
+=======
+const authController = require("../controllers/Auth_controller");
+const userController = require("../controllers/User_controller");
+const movieController = require("../controllers/Movie_controller");
+>>>>>>> 6ab42387c45f9d0f4374d693deaabd8d67cd385b
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -78,7 +84,10 @@ router.post("/delete-pelicula",(req,res)=>{
 /*-------------------------------------------------------------*/
 /*---------------------------THEATER--------------------------------*/
 
+<<<<<<< HEAD
 /*-------------------------------------------------------------*/
+=======
+>>>>>>> 6ab42387c45f9d0f4374d693deaabd8d67cd385b
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });

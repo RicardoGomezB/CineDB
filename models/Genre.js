@@ -2,14 +2,14 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const GENRE = sequelize.define("GENRE", {
-    GENRE_ID: {
+const Genre = sequelize.define("Genre", {
+    id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    GENRE: {
+    Genre: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
@@ -20,6 +20,5 @@ const GENRE = sequelize.define("GENRE", {
   }
 );
   
-GENRE.hasMany(MOVIE, {foreignKey: 'GENRE_ID'});
-
-module.exports = GENRE;
+Genre.sync();
+module.exports = Genre;

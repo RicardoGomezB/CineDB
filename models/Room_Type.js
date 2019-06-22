@@ -6,6 +6,7 @@ const Room_type = sequelize.define("Room_type", {
     Description: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
     }
   },
   {

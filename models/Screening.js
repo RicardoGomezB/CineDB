@@ -11,7 +11,7 @@ const Screening = sequelize.define("Screening", {
       allowNull: false,
       autoIncrement: true
     },
-    Screening_start_time: {
+    Start_time: {
         type: Sequelize.TIME,
         allowNull: false,
     },
@@ -25,7 +25,7 @@ const Screening = sequelize.define("Screening", {
     indexes: [
       {
         unique: true,
-        fields: ['Room_id', 'Screening_start_time', 'Date']
+        fields: ['Room_id', 'Start_time', 'Date']
       }
     ]
   }

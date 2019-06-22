@@ -12,6 +12,7 @@ const Dish_type = sequelize.define("Dish_type", {
     Description: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
     }
   },
   {

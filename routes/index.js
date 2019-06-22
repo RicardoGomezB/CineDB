@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authController");
-const userController = require("../controllers/userController");
-const movieController = require("../controllers/moviecontroller");
+const authController = require("../controllers/Auth_controller");
+const userController = require("../controllers/User_controller");
+const movieController = require("../controllers/Movie_controller");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });

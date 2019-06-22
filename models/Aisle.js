@@ -11,16 +11,19 @@ const Aisle = sequelize.define("Aisle", {
     },
     Left: {
         type: Sequelize.TINYINT(1),
+        unique: 'Aisle_combination_idx'
     },
     Right: {
         type: Sequelize.TINYINT(1),
+        unique: 'Aisle_combination_idx'
     },
     Center: {
         type: Sequelize.TINYINT(1),
+        unique: 'Aisle_combination_idx'
     }
   },
   {
-    underscored: true
+    underscored: true,
   }
 );
 

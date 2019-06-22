@@ -9,8 +9,12 @@ const Dish = sequelize.define("Dish", {
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
     }
-  //Dish_type_id
   },
   {
     underscored: true

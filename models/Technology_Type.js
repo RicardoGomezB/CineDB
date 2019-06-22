@@ -12,6 +12,7 @@ const Technology_type = sequelize.define("Technology_type", {
     Description: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true
     }
   },
   {

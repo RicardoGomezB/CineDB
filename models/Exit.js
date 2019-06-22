@@ -11,12 +11,15 @@ const Exit = sequelize.define("Exit", {
     },
     Left: {
         type: Sequelize.TINYINT(1),
+        unique: 'Exit_combination_idx'
     },
     Right: {
         type: Sequelize.TINYINT(1),
+        unique: 'Exit_combination_idx'
     },
     Center: {
         type: Sequelize.TINYINT(1),
+        unique: 'Exit_combination_idx'
     }
   },
   {

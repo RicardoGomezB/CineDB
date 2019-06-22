@@ -11,9 +11,11 @@ const Entrance = sequelize.define("Entrance", {
     },
     Left: {
         type: Sequelize.TINYINT(1),
+        unique: 'Entrance_combination_idx'
     },
     Right: {
         type: Sequelize.TINYINT(1),
+        unique: 'Entrance_combination_idx'
     }
   },
   {

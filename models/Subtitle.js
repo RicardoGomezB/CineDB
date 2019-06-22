@@ -1,32 +1,16 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Movie_repertory = require("./Movie_repertory");
+const Movie = require("./Movie");
+const Language = require("./Language");
 
-const Subtitle = sequelize.define("Subtitles", {
+const Subtitle = sequelize.define("Subtitle", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
     },
-    // MOVIE_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: MOVIE,
-    //     key: 'MOVIE_ID'
-    //   }
-    // },
-    // //LANGUAGE_ID
-    // LANGUAGE_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: LANGUAGE,
-    //     key: 'LANGUAGE_ID'
-    //   }
-    // },
   },
   {
     underscored: true,
@@ -39,7 +23,8 @@ const Subtitle = sequelize.define("Subtitles", {
   }
 );
 
-Subtitle.hasMany(Movie_repertory, {as: 'Subtitles', foreignKey: 'Subtitle_id'});
+Language.hasMany(Subtitle, {as: 'Subtitles', foreignKey: 'Language_id'});
+Movie.hasMany(Subtitle, {as: 'Subtitles', foreignKey: 'Movie_id'});
 
 Subtitle.sync();
 module.exports = Subtitle;

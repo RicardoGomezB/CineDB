@@ -25,9 +25,18 @@ const Occupied_seat = sequelize.define("Occupied_seat", {
     }
   },
   {
-    underscored: true
+    underscored: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ['Screening_id', 'Seat_id']
+      }
+    ]
   }
 );
+
+Seat.hasMany(Occupied_seat, {as: 'Occupied_seats', foreignKey: 'Seat_id'});
+Screening.hasMany(Occupied_seat, {as: 'Occupied_seats', foreignKey: 'Screening_id'});
 
 Occupied_seat.sync();
 module.exports = Occupied_seat;

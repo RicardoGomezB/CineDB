@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Dish = require("./Dish");
 
 const Dish_type = sequelize.define("Dish_type", {
     id: {
@@ -19,8 +18,6 @@ const Dish_type = sequelize.define("Dish_type", {
     underscored: true
   }
 );
-
-Dish_type.hasMany(Dish, {as: 'Dishes',foreignKey: 'Dish_type_id'});
 
 Dish_type.sync();
 module.exports = Dish_type;

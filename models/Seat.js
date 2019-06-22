@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Occupied_seat = require("./Occupied_Seat");
+const Room = require("./Room");
 
 const Seat = sequelize.define("Seat", {
     id: {
@@ -10,14 +10,6 @@ const Seat = sequelize.define("Seat", {
       allowNull: false,
       autoIncrement: true
     }, 
-    // ROOM_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: ROOM,
-    //     key: 'ROOM_ID'
-    //   }
-    // },
     Row: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -32,7 +24,7 @@ const Seat = sequelize.define("Seat", {
   }
 );
 
-Seat.hasMany(Occupied_seat, {as: 'Occupied_seats'});
+Room.hasMany(Seat, {as: 'Seats', foreignKey: 'Room_id'});
 
 Seat.sync();
 module.exports = Seat;

@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Screening = require("./Screening");
-const Movie = require("./Movie");
-const Theater = require("./Theater");
-const Language = require("./Language");
 const Subtitle = require("./Subtitle");
+const Language = require("./Language");
+const Theater = require("./Theater");
+const Censorship_level = require("./Censorship_level");
+const Movie = require("./Movie");
 
 const Movie_repertory = sequelize.define("Movie_repertory", {
     id: {
@@ -13,50 +13,6 @@ const Movie_repertory = sequelize.define("Movie_repertory", {
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
-    },
-    Movie_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: Movie,
-        key: 'id'
-      }
-    },
-    //THETER_ID
-    Theater_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: Theater,
-        key: 'id'
-      }
-    },
-    //CENSORSHIP_LEVEL_ID
-    // CENSORSHIP_LEVEL_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: CENSORSHIP_LEVEL,
-    //     key: 'CENSORSHIP_LEVEL_ID'
-    //   }
-    // },
-    //LANGUAGE_ID
-    Language_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: Language,
-        key: 'id'
-      }
-    },
-    //SUBTITLE_LANGUAGE_ID
-    Subtitle_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: Subtitle,
-        key: 'id'
-      }
     },
     Start_date: {
         type: Sequelize.DATE,
@@ -78,7 +34,11 @@ const Movie_repertory = sequelize.define("Movie_repertory", {
   }
 );
 
-Movie_repertory.hasMany(Screening, {foreignKey: 'Movie_repertory_id'});
+Movie.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Movie_id'});
+Theater.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Theater_id'});
+Subtitle.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Subtitle_id'});
+Censorship_level.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Censorship_level_id'});
+Language.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Language_id'});
 
 Movie_repertory.sync();
 module.exports = Movie_repertory;

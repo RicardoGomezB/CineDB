@@ -11,24 +11,6 @@ const Screening = sequelize.define("Screening", {
       allowNull: false,
       autoIncrement: true
     },
-    //MOVIE_REPERTORY_ID
-    // MOVIE_REPERTORY_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: MOVIE_REPERTORY,
-    //     key: 'MOVIE_REPERTORY_ID'
-    //   }
-    // },
-    // //ROOM_ID
-    // ROOM_ID: {
-    //   type: Sequelize.INTEGER,
-    //   allowNull: false,
-    //   references: {
-    //     model: ROOM,
-    //     key: 'ROOM_ID'
-    //   }
-    // },
     Screening_start_time: {
         type: Sequelize.TIME,
         allowNull: false,
@@ -43,13 +25,14 @@ const Screening = sequelize.define("Screening", {
     indexes: [
       {
         unique: true,
-        fields: [ROOM_ID, SCREENING_START_TIME, DATE]
+        fields: ['Room_id', 'Screening_start_time', 'Date']
       }
     ]
   }
 );
 
-Screening.hasMany(Occupied_seat, {as: 'Occupied_seats'});
+Movie_repertory.hasMany(Screening, {as: 'Screenings', foreignKey: 'Movie_repertory_id'});
+Room.hasMany(Screening, {as: 'Screenings', foreignKey: 'Room_id'});
 
 Screening.sync();
 module.exports = Screening;

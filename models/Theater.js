@@ -1,9 +1,6 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Room = require("./Room");
-const Movie_repertory = require("./Movie_Repertory");
-const Combo = require("./Combo");
 
 const Theater = sequelize.define("Theater", {
     id: {
@@ -34,10 +31,6 @@ const Theater = sequelize.define("Theater", {
       underscored: true
   }
 );
-
-Theater.hasMany(Room, {as: 'Rooms', foreignKey: 'Theater_id'});
-Theater.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Theater_id'});
-Theater.hasMany(Combo, {as: 'Combos', foreignKey: 'Theater_id'});
 
 Theater.sync();
 module.exports = Theater;

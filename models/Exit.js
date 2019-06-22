@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Room = require("./Room");
 
 const Exit = sequelize.define("Exit", {
     id: {
@@ -25,7 +24,5 @@ const Exit = sequelize.define("Exit", {
   }
 );
   
-Exit.hasMany(Room, {as: 'Rooms', foreignKey: 'Exit_id'});
-
 Exit.sync();
 module.exports = Exit;

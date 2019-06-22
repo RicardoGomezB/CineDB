@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR PELÍCULA
+
+        // register form
+        form(method='POST' action='/createtheater')
+          div.form-group
+            label(for='FISCAL_NAME') Título:
+            input(type='text', name="FISCAL_NAME", id="FISCAL_NAME",class="form-control")
+          div.form-group
+            label(for='OPENING_TIME') Descripción:
+            input(type='time', id="OPENING_TIME", name='OPENING_TIME', class="form-control")
+          div.form-group
+            label(for='CLOSING_TIME') Duracion:
+            input(type='time', placeholder = 'Minutos' name='CLOSING_TIME', id ='CLOSING_TIME', class='form-control')
+          div.form-group
+            label(for='LOCATION') Fecha de estreno:
+            input(type='text',  name='LOCATION', id="LOCATION", class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

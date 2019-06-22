@@ -2,14 +2,8 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
-<<<<<<< HEAD
-
-router.get("/", (req, res) => {
-  res.render("layout", { title: "Layout" });
-});
-
-=======
 const movieController = require("../controllers/moviecontroller");
+const theaterController = require("../controllers/theaterController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -17,12 +11,12 @@ router.get("/", (req, res) => {
 
 router.get("/administrar", (req,res) => {
   res.render("administrar", { title: (req,res)});
-})
+});
 
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
   res.render("add_movie", { title: "Agregar Pelicula"});
-})
+});
 
 router.post("/createMovie" ,(req,res)=>{
   movieController.CreateMovie(req.body);
@@ -59,8 +53,8 @@ router.post("/updateMovie", (req, res) => {
   console.log(req.body);
     if(!!req.body.TITLE){ 
       console.log(req.body.TITLE);
-      movieController.UpdateMovie(req.body,req.body.TITLE);
-  }
+      movieController.UpdateMovie(req.body,req.body.TITLE)
+  };
   res.redirect('/get-peliculas');
 });
 
@@ -82,8 +76,9 @@ router.post("/delete-pelicula",(req,res)=>{
   res.redirect('/get-peliculas');
 });
 /*-------------------------------------------------------------*/
+/*---------------------------THEATER--------------------------------*/
 
->>>>>>> 23c1bbeaec5c890abb4f3c3e786d79f024ab6c3f
+/*-------------------------------------------------------------*/
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });

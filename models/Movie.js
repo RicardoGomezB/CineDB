@@ -4,20 +4,11 @@ const sequelize = require("../config/database");
 const Genre = require("./Genre");
 
 const Movie = sequelize.define("Movie", {
-<<<<<<< HEAD
-    //GENRE_ID
-    Movie_ID: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      autoIncrement: true
-=======
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
->>>>>>> 6ab42387c45f9d0f4374d693deaabd8d67cd385b
     },
     Title: {
         type: Sequelize.STRING,

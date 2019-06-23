@@ -4,7 +4,7 @@ const Movie = require('../models/Movie');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateMovie = async function(data){
     try{
         console.log(data);
         Movie.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetMovie = async function(callback){
     try {
         let response = await Movie.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateMovie = async function (data){
     let response = Movie.update({
         Description: data.Description,
         Title: data.Title,
@@ -38,7 +38,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteMovie = async function (data){
     console.log(data);
     let response = Movie.destroy({
         where:{

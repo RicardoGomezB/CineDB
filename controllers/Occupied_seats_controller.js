@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const db = require('../config/database');
-const Controller_seats = require('../models/Controller_seats');
+const Controller_seats = require('../models/Occupied_Seat');
 
 const controller = {};
 

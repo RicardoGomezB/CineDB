@@ -4,7 +4,7 @@ const Genre = require('../models/Genre');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateGenre = async function(data){
     try{
         console.log(data);
         Genre.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetGenre = async function(callback){
     try {
         let response = await Genre.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateGenre = async function (data){
     let response = Genre.update({
         Genre: data.Genre
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteGenre = async function (data){
     console.log(data);
     let response = Genre.destroy({
         where:{

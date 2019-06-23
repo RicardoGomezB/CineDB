@@ -9,7 +9,7 @@ const Genre = sequelize.define("Genre", {
       allowNull: false,
       autoIncrement: true
     },
-    Genre: {
+    Genre_type: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true

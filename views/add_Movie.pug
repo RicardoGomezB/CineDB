@@ -16,6 +16,11 @@ block content
             label(for='DESCRIPTION') Descripción:
             input(type='text', id="DESCRIPTION", name='DESCRIPTION', class="form-control")
           div.form-group
+            label(for='id') Genero:
+            select(name='id', class="form-control", id="id")
+              -for(let i = 0; i < genre.length; i++)
+                option(value=genre[i].id) #{genre[i].genre}
+          div.form-group
             label(for='DURATION') Duracion:
             input(type='number', placeholder = 'Minutos' name='DURATION', id ='DURATION', class='form-control')
           div.form-group

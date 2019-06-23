@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .col-sm-9#form
+        h3 ELIMINAR SEDE
+        hr
+        br
+        .card
+            .card-body  
+                form(method="POST", action="/deleteTheater" )
+                    .row
+                        .col-sm-3
+                            select(name='Fiscal_name', class="form-control", id="Fiscal_name")
+                                -for(let i = 0; i < theater.length; i++)
+                                    option(value=theater[i].Fiscal_name) #{theater[i].Fiscal_name}
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

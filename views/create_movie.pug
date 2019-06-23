@@ -10,12 +10,13 @@ block content
         // register form
         form(method='POST' action='/createMovie')
           div.form-group
-            label(for='TITLE') Título:
-            input(type='text', name="TITLE", id="TITLE",class="form-control")
+            label(for='Title') Título:
+            input(type='text', name="Title", id="Title",class="form-control")
           div.form-group
-            label(for='DESCRIPTION') Descripción:
-            input(type='text', id="DESCRIPTION", name='DESCRIPTION', class="form-control")
+            label(for='Description') Descripción:
+            input(type='text', id="Description", name='Description', class="form-control")
           div.form-group
+<<<<<<< HEAD
             label(for='id') Genero:
             select(name='id', class="form-control", id="id")
               -for(let i = 0; i < genre.length; i++)
@@ -23,7 +24,11 @@ block content
           div.form-group
             label(for='DURATION') Duracion:
             input(type='number', placeholder = 'Minutos' name='DURATION', id ='DURATION', class='form-control')
+=======
+            label(for='Duration') Duracion:
+            input(type='number', placeholder = 'Minutos' name='Duration', id ='Duration', class='form-control')
+>>>>>>> 999f15d8d0eca6de88f952f28601af53ad8b6f87
           div.form-group
-            label(for='RELEASE_DATE') Fecha de estreno:
-            input(type='date',  name='RELEASE_DATE', id="RELEASE_DATE", class="form-control")
+            label(for='Release_date') Fecha de estreno:
+            input(type='date',  name='Release_date', id="Release_date", class="form-control")
           button.btn.btn-primary(type='submit') Agregar

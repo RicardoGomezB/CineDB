@@ -10,14 +10,19 @@ const occupiedSeats = require("../controllers/Occupied_seats_controller");
 const seatController = require("../controllers/Seat_controller");
 const roomInMaintenanceController = require("../controllers/Room_in_maintenance_controller");
 const genreController = require("../controllers/Genre_controller");
+const theaterController = require("../controllers/Theater_controller")
+const technologyController = require("../controllers/Technology_type_controller")
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
 });
 
+router.get("/administrar", (req,res) => {
+  res.render("administrar", { title: (req,res)});
+});
 
 /*----------------------PELICULAS------------------------------*/
-router.get("/add-movie", (req, res) => {
+router.get("/create-movie", (req, res) => {
   
   genreController.GetGenre((genre, err) => {
     if(err)
@@ -28,8 +33,21 @@ router.get("/add-movie", (req, res) => {
     else {
       console.log(genre);
 
-      res.render("add_Movie", {genre});
+      res.render("create_movie", {genre});
     }
+  });
+});
+
+router.get("/get-movies", (req,res)=>{
+  movieController.Get((movie, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+      else {
+        res.render("get_movies", {movie});
+      }
   });
 });
 
@@ -37,61 +55,152 @@ router.post("/createMovie" ,(req,res)=>{
   movieController.CreateMovie(req.body);
   res.redirect('/get-movies');
 });
-
-router.get("/get-movies", (req,res)=>{
-  movieController.GetMovie((movie, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("get_movies", {movie});
-    }
-  });
-});
-
-router.get("/update-movie", (req,res)=>{
-  movieController.GetMovie((movie, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("update_movie", {movie});
-    }
-  });
-});
-
+  
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
-    if(!!req.body.TITLE){ 
-      console.log(req.body.TITLE);
-      movieController.UpdateMovie(req.body,req.body.TITLE);
-  }
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      movieController.Update(req.body,req.body.id)
+  };
   res.redirect('/get-movies');
 });
 
-router.get('/delete-movie', (req,res)=>{
-  movieController.GetMovie((movie, err) => {
+router.post("/deleteMovie",(req,res)=>{
+  movieController.Delete(req.body,req.body.titulo);
+  res.redirect('/get-movies');
+});
+
+/*-------------------------------------------------------------*/
+/*---------------------------THEATER--------------------------------*/
+
+router.get("/create-theater", (req, res) => {
+  res.render("create_theater", { title: "Agregar Sede"});
+});
+
+router.get("/get-theater", (req,res)=>{
+  theaterController.Get((theater, err) => {
     if (err)
       res.json({
         success: false,
         msg: "Fallo en obtener peliculas"
       });
     else {
-      res.render("delete_movie", {movie});
+      res.render("get_theater", {theater});
     }
   });
 });
 
-router.post("/delete-movie",(req,res)=>{
-  movieController.DeleteMovie(req.body,req.body.titulo);
-  res.redirect('/get-movies');
+router.get("/update-theater", (req,res)=>{
+  theaterController.Get((theater, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("update_theater", {theater});
+    }
+  });
 });
-/*-------------------------------------------------------------*/
 
+router.get('/delete-theater', (req,res)=>{
+  theaterController.Get((theater, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener Theater"
+      });
+    else {
+      res.render("delete_theater", {theater});
+    }
+  });
+});
+
+router.post("/createTheater" ,(req,res)=>{
+  theaterController.Create(req.body);
+  res.redirect('/get-theater');
+});
+
+router.post("/updateTheater", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.Fiscal_name){ 
+      console.log(req.body.Fiscal_name);
+      theaterController.Update(req.body,req.body.Fiscal_name)
+  };
+  res.redirect('/get-theater');
+});
+
+router.post("/deleteTheater",(req,res)=>{
+  theaterController.Delete(req.body,req.body.Fiscal_name);
+  res.redirect('/get-theater');
+});
+
+/*-----------------------------------Technology_Type------------------------------------*/
+router.get("/create-technology", (req, res) => {
+  res.render("create_technology", { title: "Agregar technology"});
+});
+
+router.get("/get-technology", (req,res)=>{
+  technologyController.Get((technology, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("get_technology", {technology});
+    }
+  });
+});
+
+router.get("/update-technology", (req,res)=>{
+  technologyController.Get((technology, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("update_technology", {technology});
+    }
+  });
+});
+
+router.get('/delete-technology', (req,res)=>{
+  technologyController.Get((technology, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else {
+      res.render("delete_technology", {technology});
+    }
+  });
+});
+
+router.post("/createTechnology" ,(req,res)=>{
+  technologyController.Create(req.body);
+  res.redirect('/get-technology');
+});
+
+router.post("/updateTechnology", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.Description){ 
+      console.log(req.body.Description);
+      technologyController.Update(req.body,req.body.Description)
+  };
+  res.redirect('/get-technology');
+});
+
+router.post("/deleteTechnology",(req,res)=>{
+  technologyController.Delete(req.body,req.body.Description);
+  res.redirect('/get-technology');
+});
+
+
+
+/*----------------------------------------------------------------------*/
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });

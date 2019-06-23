@@ -7,11 +7,11 @@ block content
         br
         .card
             .card-body  
-                form(method="POST", action="/delete-pelicula" )
+                form(method="POST", action="/deleteMovie" )
                     .row
                         .col-sm-3
                             select(name='TITLE', class="form-control", id="TITLE")
                                 -for(let i = 0; i < movie.length; i++)
-                                    option(value=movie[i].TITLE) #{movie[i].TITLE}
+                                    option(value=movie[i].Title) #{movie[i].Title}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

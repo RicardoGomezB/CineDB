@@ -13,7 +13,7 @@ controller.CreateGenre = async function(data){
     }
 };
 
-controller.GetGenre = async function(callback){
+controller.GetGenres = async function(callback){
     try {
         let response = await Genre.findAll({ 
         });

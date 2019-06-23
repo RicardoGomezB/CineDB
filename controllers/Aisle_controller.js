@@ -4,7 +4,7 @@ const Aisle = require('../models/Aisle');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateAisle = async function(data){
     try{
         console.log(data);
         Aisle.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetAisles = async function(callback){
     try {
         let response = await Aisle.findAll({ 
         });

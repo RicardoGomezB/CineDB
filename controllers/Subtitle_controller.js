@@ -4,7 +4,7 @@ const Subtitle = require('../models/Subtitle');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateSubtitle = async function(data){
     try{
         console.log(data);
         Subtitle.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetSubtitles = async function(callback){
     try {
         let response = await Subtitle.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Delete = async function (data){
+controller.DeleteSubtitle = async function (data){
     console.log(data);
     let response = Subtitle.destroy({
         where:{

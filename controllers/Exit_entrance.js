@@ -4,7 +4,7 @@ const Exit = require('../models/Exit');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateExit = async function(data){
     try{
         console.log(data);
         Exit.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetExits = async function(callback){
     try {
         let response = await Exit.findAll({ 
         });

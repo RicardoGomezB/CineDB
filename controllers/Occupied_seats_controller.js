@@ -4,7 +4,7 @@ const Controller_seats = require('../models/Occupied_Seat');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateOccupiedSeat = async function(data){
     try{
         console.log(data);
         Controller_seats.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetOccupiedSeats = async function(callback){
     try {
         let response = await Controller_seats.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Delete = async function (data){
+controller.DeleteOccupiedSeat = async function (data){
     console.log(data);
     let response = Controller_seats.destroy({
         where:{

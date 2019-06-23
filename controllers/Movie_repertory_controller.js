@@ -4,7 +4,7 @@ const Movie_repertory = require('../models/Movie_repertory');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateMovieRepertory = async function(data){
     try{
         console.log(data);
         Movie_repertory.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetMovieRepertories = async function(callback){
     try {
         let response = await Movie_repertory.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateMovieRepertory = async function (data){
     let response = Movie_repertory.update({
         Movie_id: data.Movie_id,
         Theater_id: data.Theater_id,
@@ -41,7 +41,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteMovieRepertory = async function (data){
     console.log(data);
     let response = Movie_repertory.destroy({
         where:{

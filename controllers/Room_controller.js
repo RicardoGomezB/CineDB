@@ -13,7 +13,7 @@ controller.CreateRoom = async function(data){
     }
 };
 
-controller.GetRoom = async function(callback){
+controller.GetRooms = async function(callback){
     try {
         let response = await Room.findAll({ 
         });

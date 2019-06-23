@@ -13,7 +13,7 @@ controller.CreateMovie = async function(data){
     }
 };
 
-controller.GetMovie = async function(callback){
+controller.GetMovies = async function(callback){
     try {
         let response = await Movie.findAll({ 
         });

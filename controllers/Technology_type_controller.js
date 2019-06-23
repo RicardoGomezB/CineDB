@@ -4,7 +4,7 @@ const Technology_type = require('../models/Technology_type');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateTechnologyType = async function(data){
     try{
         console.log(data);
         Technology_type.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetTechnologyTypes = async function(callback){
     try {
         let response = await Technology_type.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateTechnologyType = async function (data){
     let response = Technology_type.update({
         Description: data.Description,
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteTechnologyType = async function (data){
     console.log(data);
     let response = Technology_type.destroy({
         where:{

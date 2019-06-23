@@ -4,7 +4,7 @@ const Screening = require('../models/Screening');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateScreening = async function(data){
     try{
         console.log(data);
         Screening.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetScreenings = async function(callback){
     try {
         let response = await Screening.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateScreening = async function (data){
     let response = Screening.update({
         Movie_repertory_id: data.Movie_repertory_id,
         Room_id: data.Room_id,
@@ -38,7 +38,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteScreening = async function (data){
     console.log(data);
     let response = Screening.destroy({
         where:{

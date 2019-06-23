@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .col-sm-9#form
+        h3 ELIMINAR TECHNOLOGY
+        hr
+        br
+        .card
+            .card-body  
+                form(method="POST", action="/delete-technology" )
+                    .row
+                        .col-sm-3
+                            select(name='Description', class="form-control", id="Description")
+                                -for(let i = 0; i < technology.length; i++)
+                                    option(value=technology[i].Description) #{technology[i].Description}
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

@@ -2,7 +2,7 @@ extends layout
 
 block content
     .col-sm-8#table
-        h3#text PELÍCULAS AGREGADAS
+        h3#text Technology_type
         hr
         br
         table.table.bg-white
@@ -15,17 +15,9 @@ block content
                   th(scope='col') Género
                   th(scope='col') Fecha de estreno
             tbody
-            -for(let i = 0; i <movie.length; i++)
+            -for(let i = 0; i <technology.length; i++)
                 tr(style="text-align:center;")
                     th(scope='row')
-                        h5 #{movie[i].id}
+                        h5 #{technology[i].id}
                     td
-                        h5 #{movie[i].Title}
-                    td 
-                        h5 #{movie[i].Description}
-                    td
-                        h5 #{movie[i].Duration}
-                    td
-                        h5 #{movie[i].Genre}
-                    td
-                        h5 #{movie[i].Release_date}
+                        h5 #{technology[i].Description}

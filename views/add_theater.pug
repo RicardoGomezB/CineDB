@@ -5,20 +5,20 @@ block content
   .main-container
     .row
       .col-md-6.col-md-offset-3
-        h2 AGREGAR PELÍCULA
+        h2 Agregar Sede
 
         // register form
-        form(method='POST' action='/createtheater')
+        form(method='POST' action='/createTheater')
           div.form-group
-            label(for='FISCAL_NAME') Título:
-            input(type='text', name="FISCAL_NAME", id="FISCAL_NAME",class="form-control")
+            label(for='Fiscal_name') Nombre de la Sede:
+            input(type='text', name="Fiscal_name", id="Fiscal_name",class="form-control")
           div.form-group
-            label(for='OPENING_TIME') Descripción:
-            input(type='time', id="OPENING_TIME", name='OPENING_TIME', class="form-control")
+            label(for='Opening_time') Horario de Apertura:
+            input(type='time', id="Opening_time", name='Opening_time', class="form-control")
           div.form-group
-            label(for='CLOSING_TIME') Duracion:
-            input(type='time', placeholder = 'Minutos' name='CLOSING_TIME', id ='CLOSING_TIME', class='form-control')
+            label(for='Closing_time') Horario de Clausura:
+            input(type='time', placeholder = 'Minutos' name='Closing_time', id ='Closing_time', class='form-control')
           div.form-group
-            label(for='LOCATION') Fecha de estreno:
-            input(type='text',  name='LOCATION', id="LOCATION", class="form-control")
+            label(for='Location') Ubicación:
+            input(type='text',  name='Location', id="Location", class="form-control")
           button.btn.btn-primary(type='submit') Agregar

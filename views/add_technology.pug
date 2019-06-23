@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR PELÍCULA
+
+        // register form
+        form(method='POST' action='/createtechnology')
+          div.form-group
+            label(for='Description') Tipo:
+            input(type='text', name="Description", id="Description",class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

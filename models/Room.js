@@ -15,17 +15,23 @@ const Room = sequelize.define("Room", {
       allowNull: false,
       autoIncrement: true
     },
-    room_number: {
+    Room_number: {
       type: Sequelize.INTEGER,
       allowNull: false
-    }
+    },
+    Col_qty: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    Row_qty: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
   },
   {
     underscored: true
   }
 );
-
-
 
 Theater.hasMany(Room, {as: 'Rooms', foreignKey: 'Theater_id'});
 Room_type.hasMany(Room, {as: 'Rooms', foreignKey: 'Room_type_id'});

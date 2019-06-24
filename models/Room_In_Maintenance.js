@@ -7,7 +7,11 @@ const Room_in_maintenance = sequelize.define("Room_in_maintenance", {
     
   },
   {
-    underscored: true
+    underscored: true,
+    name: {
+      singular: 'Room_in_maintenance',
+      plural: 'Rooms_in_maintenance'
+    }
   }
 );
 

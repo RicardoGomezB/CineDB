@@ -8,7 +8,7 @@ block content
                 .card-body
                     form(method="POST", action="/getMoviesByGenreId" )
                         .col-sm-3
-                            select(name='id', class="form-control", id="id")
+                            select(name='Genre_id', class="form-control", id="Genre_id")
                                 -for(let i = 0; i < genre.length; i++)
                                     option(value=genre[i].id) #{genre[i].Genre_type}
                         br

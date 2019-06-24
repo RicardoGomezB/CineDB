@@ -89,6 +89,27 @@ router.get("/get-movies", (req,res)=>{
   });
 });
 
+router.get("/update-movie", (req,res)=>{
+  let genre;
+
+  genreController.GetGenres((gGenre) => {
+    genre = gGenre;
+  });
+
+  movieController.GetMovies((movie, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain movies"
+      });
+      else {
+
+        res.render("update_movie", {movie, genre});
+
+      }
+  });
+});
+
 router.get("/delete-movie", (req,res)=>{
   movieController.GetMovies((movie, err) => {
     if (err)
@@ -113,13 +134,13 @@ router.post("/updateMovie", (req,res) => {
   console.log(req.body);
     if(!!req.body.id){ 
       console.log(req.body.id);
-      movieController.UpdateMovie(req.body,req.body.id)
+      movieController.UpdateMovie(req.body, req.body.id);
     };
   res.redirect('/get-movies');
 });
 
 router.post("/deleteMovie", (req,res) => {
-  movieController.DeleteMovie(req.body,req.body.titulo);
+  movieController.DeleteMovie(req.body);
   res.redirect('/get-movies');
 });
 
@@ -364,7 +385,7 @@ router.get('/delete-room', (req,res)=>{
 /*-----------------POST-------------------*/
 //create
 router.post("/createRoom" ,(req,res)=>{
-  roomController.roomController(req.body);
+  roomController.CreateRoom(req.body);
   res.redirect('/get-rooms');
 });
 //update
@@ -518,5 +539,27 @@ router.get("/create-repertory", (req,res) => {
        res.render("create_repertory", {movie, theater, subtitle, language, censorship});
     });
 });
+
+router.get("/get-rooms", (req, res) => {
+  roomController.GetRooms((room, err) => {
+    res.render("get_rooms", {room});
+  });
+});
+
+router.get("/update-room", (req, res) => {
+  roomController.UpdateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+/*-----------------POST-------------------*/
+router.post("/createRoom", (req, res) => {
+  roomController.CreateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+
+router.post("/updateRoom", (req, res) => {
+  roomController.UpdateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+
 
 module.exports = router;

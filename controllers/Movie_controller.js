@@ -64,4 +64,20 @@ controller.GetMoviesByGenre = async function(data, callback){
         callback(error, null);
     }
 }
+
+controller.GetMovieById = async function(data, callback){
+    try {
+        console.log(data);
+        let response = Movie.findAll({ 
+            where: {
+                id: data.id
+            }
+        });
+        let movie = response.map(result => result.dataValues);
+        
+        callback(movie, null);
+    } catch (error) {
+        callback(error, null);
+    }
+}
 module.exports = controller;

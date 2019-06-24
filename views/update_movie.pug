@@ -13,9 +13,13 @@ block content
                         .col-sm-3
                             label Película a modificar
                             br
-                            select(name='Title', class="form-control", id="Title")
+                            select(name='id', class="form-control", id="id")
                                 -for(let i = 0; i < movie.length; i++)
-                                    option(value=movie[i].Title) #{movie[i].Title}
+                                    option(value=movie[i].id) #{movie[i].Title}
+                        .col-sm-3
+                            label Titulo
+                            br
+                            input(type="text", name="Title", id="Title", class="form-control")
                         .col-sm-3
                             label Descripción
                             br
@@ -28,5 +32,11 @@ block content
                             label Fecha de estreno
                             br
                             input(type="date", name="Release_date", id="Release_date", class="form-control")
+                        .col-sm-3
+                            label Genero:
+                            br
+                            select(name="Genre_id", id="Genre_id", class="form-control")
+                                -for(let i = 0; i < genre.length; i++)
+                                    option(value=genre[i].id) #{genre[i].Genre_type}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Actualizar

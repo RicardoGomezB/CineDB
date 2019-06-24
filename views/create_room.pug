@@ -14,6 +14,9 @@ block content
                                 -for(let i = 0; i < theater.length; i++)
                                     option(value=theater[i].id) #{theater[i].Fiscal_name}
                         div.form-group
+                            label(for='Room_no') Numero de la sala:
+                                input(type='number', name='Room_number', id='Room_number',class="form-control")
+                        div.form-group
                             label(for='Room_type') Tipo de sala:
                             select(type="text", name="Room_type_id", id="Room_type_id")
                                 -for(let i = 0; i < roomType.length; i++)
@@ -55,4 +58,4 @@ block content
                                 option(value=1) Izquierda
                                 option(value=2) Izquierda y Derecha
                                 option(value=3) Derecha        
-                    button.btn.btn-success(type='submit') Agregar
+                        button.btn.btn-success(type='submit') Agregar

@@ -1,36 +1,12 @@
 extends layout
 
 block content
-  .container-fluid
-    h2 ADMINISTRAR SITIO
-    
-    .row
-      .col(style='background-color:white;')
-        .list-group
-          a.list-group-item.list-group-item-action.active(href='#')
-            | Sedes y salas
-          a.list-group-item.list-group-item-action(href='get-theaters') Ver Sedes
-      .col(style='background-color:white;')
-        .list-group
-          a.list-group-item.list-group-item-action.active(href='#')
-            |  Peliculas y funciones
-          a.list-group-item.list-group-item-action(href='/get-movies') Lista de películas
-          a.list-group-item.list-group-item-action(href='/get-movies') Funciones
-      .col(style='background-color:white;')
-        .list-group
-          a.list-group-item.list-group-item-action.active(href='#')
-            | Confiteria y combos
-          a.list-group-item.list-group-item-action(href='/create-food') Agregar Comida
-          a.list-group-item.list-group-item-action(href='/delete-food') Eliminar Comida
-          a.list-group-item.list-group-item-action(href='create-combo') Crear combo
-          a.list-group-item.list-group-item-action(href='update-combo') Modificar combo
-          a.list-group-item.list-group-item-action(href='/delete-combo') Eliminar combo
-      .col(style='background-color:white;')
-        .list-group
-          a.list-group-item.list-group-item-action.active(href='#')
-            | Confiteria y combos
-          a.list-group-item.list-group-item-action(href='/create-food') Agregar Comida
-          a.list-group-item.list-group-item-action(href='/delete-food') Eliminar Comida
-          a.list-group-item.list-group-item-action(href='create-combo') Crear combo
-          a.list-group-item.list-group-item-action(href='update-combo') Modificar combo
-          a.list-group-item.list-group-item-action(href='/delete-combo') Eliminar combo
+    .card
+        .card-body
+            a.btn.btn-outline-success.btn-lg(href='pelicula') Peliculas 
+            a.btn.btn-outline-success.btn-lg(href='sede') Sedes
+            a.btn.btn-outline-success.btn-lg(href='sala') Salas
+            a.btn.btn-outline-success.btn-lg(href='genre') Generos
+            a.btn.btn-outline-success.btn-lg(href='#') Lenguajes
+            a.btn.btn-outline-success.btn-lg(href='#') Censura
+            a.btn.btn-outline-success.btn-lg(href='#') Tipo de Tecnologia

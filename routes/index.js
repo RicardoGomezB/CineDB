@@ -25,6 +25,22 @@ router.get("/administrar", (req,res) => {
   res.render("administrar", { title: (req,res)});
 });
 
+router.get("/pelicula", (req,res) => {
+  res.render("pelicula", { title: (req,res)});
+});
+
+router.get("/genre", (req,res) => {
+  res.render("genre", { title: (req,res)});
+});
+
+router.get("/sede", (req,res) => {
+  res.render("sede", { title: (req,res)});
+});
+
+router.get("/sala", (req,res) => {
+  res.render("sala", { title: (req,res)});
+});
+
 /*----------------------MOVIES------------------------------*/
 /*-----------------GET-------------------*/
 router.get("/create-movie", (req, res) => {

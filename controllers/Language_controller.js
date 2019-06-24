@@ -13,7 +13,7 @@ controller.CreateLanguage = async function(data){
     }
 };
 
-controller.GetLanguages = async function(callback){
+controller.GetLanguage = async function(callback){
     try {
         let response = await Language.findAll({ 
         });

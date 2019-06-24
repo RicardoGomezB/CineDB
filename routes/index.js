@@ -418,20 +418,20 @@ router.post("/createGenre",(req,res) => {
 
 /*---------------------------LANGUAGE--------------------------------*/
 /*-----------------GET-------------------*/
-router.get("/get-languages",(req,res) => {
-  languageController.GetLanguages((language, err) => {
-    res.render("get_languages", {Language});
+router.get("/get-language",(req,res) => {
+  languageController.GetLanguage((language, err)=> {
+    res.render("get_language", {language});
   })
-router.get("/create-languages",(req,res) => {
-    res.render("create_languages");
+});
+router.get("/create-language",(req,res) => {
+    res.render("create_language");
 });
 /*-----------------POST-------------------*/
-router.post("/create-languages",(req,res) => {
+router.post("/createlanguage",(req,res) => {
   languageController.CreateLanguage(req.body);
-  res.redirect("/get-languages");
+  res.redirect("/get-language");
 });
-
-/*----------------------------------------------------------------------*/
+/*-------------------------------------------------------------
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });
@@ -439,6 +439,6 @@ router.post("signin", authController.signin);
 router.get("signup", (req, res) => {
   res.render("auth/signup", { title: "Registrarse" });
 });
-router.post("signup", userController.signup, authController.signin);
+router.post("signup", userController.signup, authController.signin);---------*/
 
 module.exports = router;

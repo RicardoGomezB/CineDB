@@ -1,27 +1,29 @@
 extends layout
 
 block content
-  .main-container.container-fluid
-    .row
-      .col-md-6.col-md-offset-3
-        h2 AGREGAR PELÍCULA
-        // register form
-        form(method='POST' action='/createMovie')
-          div.form-group
-            label(for='Title') Título:
-            input(type='text', name="Title", id="Title",class="form-control")
-          div.form-group
-            label(for='Description') Descripción:
-            input(type='text', id="Description", name='Description', class="form-control")
-          div.form-group
-            label(for='Genre_id') Genero:
-            select(name='Genre_id', class="form-control", id="Genre_id")
-              -for(let i = 0; i < genre.length; i++)
-                option(value=genre[i].id) #{genre[i].Genre_type}
-          div.form-group
-            label(for='Duration') Duracion:
-            input(type='number', placeholder = 'Minutos' name='Duration', id ='Duration', class='form-control')
-          div.form-group
-            label(for='Release_date') Fecha de estreno:
-            input(type='date', placeholder = 'MM-DD-YYYY', name='Release_date', id="Release_date", class="form-control")
-          button.btn.btn-primary(type='submit') Agregar
+  .card
+    .card-body
+      .main-container.container-fluid
+        .row
+          .col-md-6.col-md-offset-3
+            h2 AGREGAR PELÍCULA
+            // register form
+            form(method='POST' action='/createMovie')
+              div.form-group
+                label(for='Title') Título:
+                input(type='text', name="Title", id="Title",class="form-control")
+              div.form-group
+                label(for='Description') Descripción:
+                input(type='text', id="Description", name='Description', class="form-control")
+              div.form-group
+                label(for='Genre_id') Genero:
+                select(name='Genre_id', class="form-control", id="Genre_id")
+                  -for(let i = 0; i < genre.length; i++)
+                    option(value=genre[i].id) #{genre[i].Genre_type}
+              div.form-group
+                label(for='Duration') Duracion:
+                input(type='number', placeholder = 'Minutos' name='Duration', id ='Duration', class='form-control')
+              div.form-group
+                label(for='Release_date') Fecha de estreno:
+                input(type='date', placeholder = 'MM-DD-YYYY', name='Release_date', id="Release_date", class="form-control")
+              button.btn.btn-primary(type='submit') Agregar

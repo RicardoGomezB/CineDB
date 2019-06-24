@@ -4,6 +4,8 @@ const authController = require("../controllers/Auth_controller");
 const userController = require("../controllers/User_controller");
 const movieController = require("../controllers/Movie_controller");
 const aisleController = require("../controllers/Aisle_controller");
+const entranceController = require("../controllers/Entrance_controller");
+const exitController = require("../controllers/Exit_entrance");
 const screeningController = require("../controllers/Screening_controller");
 const comboController = require("../controllers/Combo_controller");
 const occupiedSeats = require("../controllers/Occupied_seats_controller");
@@ -238,7 +240,26 @@ router.post("/deleteTechnology",(req,res)=>{
 router.get("/create-room", (req, res) => {
   let roomType;
   let techType;
+  let aisle;
+  let entrance;
+  let exit;
 
+  aisleController.GetAisles((gAisle, err) => {
+    aisle = gAisle;
+  });
+
+  aisleController.GetAisles((gAisle, err) => {
+    aisle = gAisle;
+  });
+
+  entranceController.GetEntrances((gEntrance, err) => {
+    entrance = gEntrance;
+  });
+
+  exitController.GetExits((gExit, err) => {
+    exit = gExit;
+  });
+  
   technologyController.GetTechnologyTypes((gTechType, err) => {
     roomType = gTechType;
   });
@@ -254,7 +275,7 @@ router.get("/create-room", (req, res) => {
         msg: "Failed to obtain theaters"
       });
     else{
-      res.render("create_room", {roomType, techType, theater});
+      res.render("create_room", {roomType, techType, theater, entrance, exit, aisle});
     }
   });
 });

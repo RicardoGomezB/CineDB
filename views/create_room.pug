@@ -1,0 +1,57 @@
+extends layout
+
+block content
+    .card  
+        .card-body
+            .main-container.container-fluid
+                .row
+                .col-md-6.col-md-offset-3
+                    h2 AGREGAR SALA:
+                    form(method='POST' action='/createRoom')
+                        div.form-group
+                            label(for='Theater_id') Sede:
+                            select(type='text', name='Theater_id', id='Theater_id',class="form-control")
+                                -for(let i = 0; i < theater.length; i++)
+                                    option(value=theater[i].id) #{theater[i].Fiscal_name}
+                        div.form-group
+                            label(for='Room_type') Tipo de sala:
+                            -for(let i = 0; i < roomType.length; i++)
+                                input(
+                                    type="radio", 
+                                    name="Room_type_id", 
+                                    id="Room_type_id", 
+                                    value=roomType[i].id
+                                    ) #{roomType[i].Description} 
+                        div.form-group
+                            label(for='Technology_type') Tipo de tecnologia:
+                            -for(let i = 0; i < techType.length; i++)
+                                input(
+                                    type="radio", 
+                                    name="Technology_type_id", 
+                                    id="Technology_type_id", 
+                                    value=techType[i].id
+                                    ) #{techType[i].Description}
+                        div.form-group
+                            label(for='Aisle') Pasillos:
+                            input(type="radio", name="Aisle_id", id="Aisle_id_1", value=1) Izquierda
+                            input(type="radio", name="Aisle_id", id="Aisle_id_2", value=2) Centro
+                            input(type="radio", name="Aisle_id", id="Aisle_id_3", value=3) Derecha
+                            input(type="radio", name="Aisle_id", id="Aisle_id_4", value=4) Izquierda y centro
+                            input(type="radio", name="Aisle_id", id="Aisle_id_5", value=5) Izquierda y derecha
+                            input(type="radio", name="Aisle_id", id="Aisle_id_6", value=6) Centro y derecha
+                            input(type="radio", name="Aisle_id", id="Aisle_id_7", value=7) Izquierda, centro y derecha
+                        div.form-group
+                            label(for='Exit') Salidas:
+                            input(type="radio", name="Exit_id", id="Exit_id_1", value=1) Izquierda
+                            input(type="radio", name="Exit_id", id="Exit_id_2", value=2) Centro
+                            input(type="radio", name="Exit_id", id="Exit_id_3", value=3) Derecha
+                            input(type="radio", name="Exit_id", id="Exit_id_4", value=4) Izquierda y derecha
+                            input(type="radio", name="Exit_id", id="Exit_id_5", value=5) Izquierda y centro
+                            input(type="radio", name="Exit_id", id="Exit_id_6", value=6) Centro y derecha
+                            input(type="radio", name="Exit_id", id="Exit_id_7", value=7) Izquierda, centro y derecha
+                        div.form-group
+                            label(for='Exit') Entradas:
+                            input(type="radio", name="Entrance_id", id="Entrance_id_1", value=1) Izquierda
+                            input(type="radio", name="Entrance_id", id="Entrance_id_5", value=2) Izquierda y Derecha
+                            input(type="radio", name="Entrance_id", id="Entrance_id_4", value=3) Derecha        
+                    button.btn.btn-primary(type='submit') Agregar

@@ -277,7 +277,7 @@ router.get("/create-room", (req, res) => {
   });
   
   technologyController.GetTechnologyTypes((gTechType, err) => {
-    roomType = gTechType;
+    techType = gTechType;
   });
   
   roomTypeController.GetRoomTypes((gRoomType, err) => {

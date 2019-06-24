@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    .card
+        .card-body
+            .container-fluid.row
+                .container-fluid.col-8#table
+                    h3#text Lenguaje
+                    hr
+                    br
+                    table.table.bg-white
+                        thead
+                            tr(style="text-align:center;")
+                            th(scope='col') ID
+                            th(scope='col') Lenguaje
+                        tbody
+                        -for(let i = 0; i <language.length; i++)
+                            tr(style="text-align:center;")
+                                th(scope='row')
+                                    h5 #{language[i].id}
+                                td
+                                    h5 #{language[i].Language}
+            div.text-center
+                a.btn.btn-primary(href='/create-languages')  Agregar lenguaje

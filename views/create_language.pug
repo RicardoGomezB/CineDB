@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .main-container.container-fluid
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR LENGUAJE
+        // register form
+        form(method='POST' action='/createLanguage')
+          div.form-group
+            label(for='Language') Lenguaje:
+            input(type='text', name="Language", id="Language",class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

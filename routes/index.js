@@ -14,6 +14,7 @@ const theaterController = require("../controllers/Theater_controller");
 const technologyController = require("../controllers/Technology_type_controller");
 const roomController = require("../controllers/Room_controller");
 const roomTypeController = require("../controllers/Room_type_controller");
+const languageController = require("../controllers/Language_controller");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -413,6 +414,21 @@ router.get("/create-genre",(req,res) => {
 router.post("/createGenre",(req,res) => {
   genreController.CreateGenre(req.body);
   res.redirect("/get-genres");
+});
+
+/*---------------------------LANGUAGE--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/get-languages",(req,res) => {
+  languageController.GetLanguages((language, err) => {
+    res.render("get_languages", {Language});
+  })
+router.get("/create-languages",(req,res) => {
+    res.render("create_languages");
+});
+/*-----------------POST-------------------*/
+router.post("/create-languages",(req,res) => {
+  languageController.CreateLanguage(req.body);
+  res.redirect("/get-languages");
 });
 
 /*----------------------------------------------------------------------*/

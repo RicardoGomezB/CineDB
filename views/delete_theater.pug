@@ -10,8 +10,8 @@ block content
                 form(method="POST", action="/deleteTheater" )
                     .row
                         .col-sm-3
-                            select(name='Fiscal_name', class="form-control", id="Fiscal_name")
+                            select(name='id', class="form-control", id="id")
                                 -for(let i = 0; i < theater.length; i++)
-                                    option(value=theater[i].Fiscal_name) #{theater[i].Fiscal_name}
+                                    option(value=theater[i].id) #{theater[i].Fiscal_name}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

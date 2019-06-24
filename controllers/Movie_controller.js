@@ -18,6 +18,7 @@ controller.GetMovies = async function(callback){
         let response = await Movie.findAll({ 
         });
         let movie = response.map(result => result.dataValues);
+        
         callback(movie, null);
         
     } catch (error) {
@@ -30,7 +31,8 @@ controller.UpdateMovie = async function (data){
         Description: data.Description,
         Title: data.Title,
         Duration: data.Duration,
-        Release_date: data.Release_date
+        Release_date: data.Release_date,
+        Genre_id: data.Genre_id
     },{
         where:{
             id: data.id
@@ -45,5 +47,21 @@ controller.DeleteMovie = async function (data){
             id: data.id
         }
     })
+}
+
+controller.GetMoviesByGenre = async function(data, callback){
+    try {
+        console.log(data);
+        let response = Movie.findAll({ 
+            where: {
+                Genre_id: data.Genre_id
+            }
+        });
+        let movie = response.map(result => result.dataValues);
+        
+        callback(movie, null);
+    } catch (error) {
+        callback(error, null);
+    }
 }
 module.exports = controller;

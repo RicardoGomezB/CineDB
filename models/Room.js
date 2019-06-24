@@ -14,6 +14,10 @@ const Room = sequelize.define("Room", {
       primaryKey: true,
       allowNull: false,
       autoIncrement: true
+    },
+    room_number: {
+      type: Sequelize.INTEGER,
+      allowNull: false
     }
   },
   {

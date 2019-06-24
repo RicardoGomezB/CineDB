@@ -49,17 +49,19 @@ controller.DeleteRoom = async function (data){
     })
 }
 
-// controller.GetRoomsByTheaterId = async function(data, callback){
-//     try {
-//         console.log(data);
-//         Room.find({ 
-//             where: {
-//                 id: data.Theater_id
-//             }
-//         });
-//     } catch (error) {
-//         callback(error, null);
-//     }
-// }
+controller.GetRoomsByTheaterId = async function(data, callback){
+    try {
+        console.log(data);
+        let response = await Room.findAll({ 
+            where: {
+                id: data.Theater_id
+            }
+        });
+        let rooms = response.map(result => result.dataValues);
+        callback(rooms, null);
+    } catch (error) {
+        callback(error, null);
+    }
+}
 
 module.exports = controller;

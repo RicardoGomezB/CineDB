@@ -10,8 +10,8 @@ block content
                 form(method="POST", action="/deleteMovie" )
                     .row
                         .col-sm-3
-                            select(name='TITLE', class="form-control", id="TITLE")
+                            select(name='id', class="form-control", id="id")
                                 -for(let i = 0; i < movie.length; i++)
-                                    option(value=movie[i].Title) #{movie[i].Title}
+                                    option(value=movie[i].id) #{movie[i].Title}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

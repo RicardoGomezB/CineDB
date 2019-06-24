@@ -3,10 +3,6 @@ const router = express.Router();
 const authController = require("../controllers/Auth_controller");
 const userController = require("../controllers/User_controller");
 const movieController = require("../controllers/Movie_controller");
-<<<<<<< HEAD
-const theaterController = require("../controllers/Theater_controller")
-const technologyController = require("../controllers/Technology_type_controller")
-=======
 const aisleController = require("../controllers/Aisle_controller");
 const entranceController = require("../controllers/Entrance_controller");
 const exitController = require("../controllers/Exit_entrance");
@@ -20,7 +16,6 @@ const theaterController = require("../controllers/Theater_controller");
 const technologyController = require("../controllers/Technology_type_controller");
 const roomController = require("../controllers/Room_controller");
 const roomTypeController = require("../controllers/Room_type_controller");
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -29,13 +24,6 @@ router.get("/", (req, res) => {
 router.get("/administrar", (req,res) => {
   res.render("administrar", { title: (req,res)});
 });
-<<<<<<< HEAD
-
-/*----------------------PELICULAS------------------------------*/
-router.get("/agregar-pelicula", (req, res) => {
-  res.render("add_Movie", { title: "Agregar Pelicula"});
-});
-=======
 
 /*----------------------MOVIES------------------------------*/
 /*-----------------GET-------------------*/
@@ -57,7 +45,6 @@ router.get("/create-movie", (req, res) => {
 
 router.get("/get-movies", (req,res)=>{
   let genre;
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
 
   genreController.GetGenres((gGenre) => {
     genre = gGenre;
@@ -93,14 +80,6 @@ router.get("/delete-movie", (req,res)=>{
 });
 /*-----------------POST-------------------*/
 router.post("/createMovie" ,(req,res)=>{
-<<<<<<< HEAD
-  movieController.Create(req.body);
-  res.redirect('/get-peliculas');
-});
-
-router.get("/get-peliculas", (req,res)=>{
-  movieController.Get((movie, err) => {
-=======
   movieController.CreateMovie(req.body);
   res.redirect('/get-movies');
 });
@@ -148,7 +127,6 @@ router.get("/get-theaters", (req,res)=>{
 
 router.get("/update-theater", (req,res)=>{
   theaterController.GetTheaters((theater, err) => {
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
     if (err)
       res.json({
         success: false,
@@ -160,13 +138,8 @@ router.get("/update-theater", (req,res)=>{
   });
 });
 
-<<<<<<< HEAD
-router.get("/modificar-pelicula", (req,res)=>{
-  movieController.Get((movie, err) => {
-=======
 router.get('/delete-theater', (req,res)=>{
   theaterController.GetTheaters((theater, err) => {
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
     if (err)
       res.json({
         success: false,
@@ -187,15 +160,6 @@ router.post("/updateTheater", (req, res) => {
   console.log(req.body);
     if(!!req.body.id){ 
       console.log(req.body.id);
-<<<<<<< HEAD
-      movieController.Update(req.body,req.body.id)
-  };
-  res.redirect('/get-peliculas');
-});
-
-router.get('/eliminar-pelicula', (req,res)=>{
-  movieController.Get((movie, err) => {
-=======
       theaterController.UpdateTheater(req.body,req.body.id)
   };
   res.redirect('/get-theaters');
@@ -214,7 +178,6 @@ router.get("/create-technology", (req, res) => {
 
 router.get("/get-technology", (req,res)=>{
   technologyController.GetTechnologyTypes((technology, err) => {
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
     if (err)
       res.json({
         success: false,
@@ -226,141 +189,6 @@ router.get("/get-technology", (req,res)=>{
   });
 });
 
-<<<<<<< HEAD
-router.post("/delete-pelicula",(req,res)=>{
-  movieController.Delete(req.body,req.body.titulo);
-  res.redirect('/get-peliculas');
-});
-/*-------------------------------------------------------------*/
-/*---------------------------THEATER--------------------------------*/
-
-router.get("/agregar-theater", (req, res) => {
-  res.render("add_theater", { title: "Agregar Sede"});
-});
-
-router.post("/createTheater" ,(req,res)=>{
-  theaterController.Create(req.body);
-  res.redirect('/get-theater');
-});
-
-router.get("/get-theater", (req,res)=>{
-  theaterController.Get((theater, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("get_theater", {theater});
-    }
-  });
-});
-
-router.get("/modificar-theater", (req,res)=>{
-  theaterController.Get((theater, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("update_theater", {theater});
-    }
-  });
-});
-
-router.post("/updatetheater", (req, res) => {
-  console.log(req.body);
-    if(!!req.body.Fiscal_name){ 
-      console.log(req.body.Fiscal_name);
-      theaterController.Update(req.body,req.body.Fiscal_name)
-  };
-  res.redirect('/get-theater');
-});
-
-router.get('/eliminar-theater', (req,res)=>{
-  theaterController.Get((theater, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener Theater"
-      });
-    else {
-      res.render("delete_theater", {theater});
-    }
-  });
-});
-
-router.post("/delete-theater",(req,res)=>{
-  theaterController.Delete(req.body,req.body.Fiscal_name);
-  res.redirect('/get-theater');
-});
-
-/*-----------------------------------Technology_Type------------------------------------*/
-router.get("/agregar-technology", (req, res) => {
-  res.render("add_technology", { title: "Agregar technology"});
-});
-
-router.post("/createtechnology" ,(req,res)=>{
-  technologyController.Create(req.body);
-  res.redirect('/get-technology');
-});
-
-router.get("/get-technology", (req,res)=>{
-  technologyController.Get((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("get_technology", {technology});
-    }
-  });
-});
-
-router.get("/modificar-technology", (req,res)=>{
-  technologyController.Get((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("update_technology", {technology});
-    }
-  });
-});
-
-router.post("/updatetechnology", (req, res) => {
-  console.log(req.body);
-    if(!!req.body.Description){ 
-      console.log(req.body.Description);
-      technologyController.Update(req.body,req.body.Description)
-  };
-  res.redirect('/get-technology');
-});
-
-router.get('/eliminar-technology', (req,res)=>{
-  technologyController.Get((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener Theater"
-      });
-    else {
-      res.render("delete_technology", {technology});
-    }
-  });
-});
-
-router.post("/delete-technology",(req,res)=>{
-  technologyController.Delete(req.body,req.body.Description);
-  res.redirect('/get-technology');
-});
-
-
-=======
 router.get("/update-technology", (req,res)=>{
   technologyController.GetTechnologyTypes((technology, err) => {
     if (err)
@@ -607,7 +435,6 @@ router.post("/createGenre",(req,res) => {
   genreController.CreateGenre(req.body);
   res.redirect("/get-genres");
 });
->>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
 
 /*----------------------------------------------------------------------*/
 router.get("signin", (req, res) => {

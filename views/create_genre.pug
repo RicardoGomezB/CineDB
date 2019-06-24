@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .card  
+        .card-body
+            .main-container.container-fluid
+                .row
+                .col-md-6.col-md-offset-3
+                    h2 AGREGAR GENERO
+                    // register form
+                    form(method='POST' action='/createGenre')
+                    div.form-group
+                        label(for='Genre_type') Genero:
+                        input(type='text', name="Genre_type", id="Genre_type",class="form-control")
+                    button.btn.btn-primary(type='submit') Agregar

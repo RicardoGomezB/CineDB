@@ -23,7 +23,7 @@ const Movie = sequelize.define("Movie", {
         allowNull: false
     },
     Release_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: true
     },
   },

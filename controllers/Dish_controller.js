@@ -4,7 +4,7 @@ const Dish = require('../models/Dish');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateDish = async function(data){
     try{
         console.log(data);
         Dish.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetDishes = async function(callback){
     try {
         let response = await Dish.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateDish = async function (data){
     let response = Dish.update({
         Dish_type_id: data.Dish_type_id
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteDish = async function (data){
     console.log(data);
     let response = Dish.destroy({
         where:{

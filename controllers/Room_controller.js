@@ -4,7 +4,7 @@ const Room = require('../models/Room');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateRoom = async function(data){
     try{
         console.log(data);
         Room.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetRooms = async function(callback){
     try {
         let response = await Room.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateRoom = async function (data){
     let response = Room.update({
         Theater_id: data.Theater_id,
         Technology_type_id: data.Technology_type_id,
@@ -40,13 +40,28 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteRoom = async function (data){
     console.log(data);
     let response = Room.destroy({
         where:{
             id: data.id
         }
     })
+}
+
+controller.GetRoomsByTheaterId = async function(data, callback){
+    try {
+        console.log(data);
+        let response = await Room.findAll({ 
+            where: {
+                id: data.Theater_id
+            }
+        });
+        let rooms = response.map(result => result.dataValues);
+        callback(rooms, null);
+    } catch (error) {
+        callback(error, null);
+    }
 }
 
 module.exports = controller;

@@ -3,8 +3,24 @@ const router = express.Router();
 const authController = require("../controllers/Auth_controller");
 const userController = require("../controllers/User_controller");
 const movieController = require("../controllers/Movie_controller");
+<<<<<<< HEAD
 const theaterController = require("../controllers/Theater_controller")
 const technologyController = require("../controllers/Technology_type_controller")
+=======
+const aisleController = require("../controllers/Aisle_controller");
+const entranceController = require("../controllers/Entrance_controller");
+const exitController = require("../controllers/Exit_entrance");
+const screeningController = require("../controllers/Screening_controller");
+const comboController = require("../controllers/Combo_controller");
+const occupiedSeats = require("../controllers/Occupied_seats_controller");
+const seatController = require("../controllers/Seat_controller");
+const roomInMaintenanceController = require("../controllers/Room_in_maintenance_controller");
+const genreController = require("../controllers/Genre_controller");
+const theaterController = require("../controllers/Theater_controller");
+const technologyController = require("../controllers/Technology_type_controller");
+const roomController = require("../controllers/Room_controller");
+const roomTypeController = require("../controllers/Room_type_controller");
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -13,47 +29,165 @@ router.get("/", (req, res) => {
 router.get("/administrar", (req,res) => {
   res.render("administrar", { title: (req,res)});
 });
+<<<<<<< HEAD
 
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
   res.render("add_Movie", { title: "Agregar Pelicula"});
 });
+=======
 
+/*----------------------MOVIES------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/create-movie", (req, res) => {
+  
+  genreController.GetGenres((genre, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain genres"
+      });
+    else {
+
+      res.render("create_movie", {genre});
+
+    }
+  });
+});
+
+router.get("/get-movies", (req,res)=>{
+  let genre;
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
+
+  genreController.GetGenres((gGenre) => {
+    genre = gGenre;
+  });
+
+  movieController.GetMovies((movie, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain movies"
+      });
+      else {
+
+        res.render("get_movies", {movie, genre});
+
+      }
+  });
+});
+
+router.get("/delete-movie", (req,res)=>{
+  movieController.GetMovies((movie, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain movies"
+      });
+      else {
+
+        res.render("delete_movie", {movie});
+
+      }
+  });
+});
+/*-----------------POST-------------------*/
 router.post("/createMovie" ,(req,res)=>{
+<<<<<<< HEAD
   movieController.Create(req.body);
   res.redirect('/get-peliculas');
 });
 
 router.get("/get-peliculas", (req,res)=>{
   movieController.Get((movie, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("get_movies", {movie});
-    }
-  });
+=======
+  movieController.CreateMovie(req.body);
+  res.redirect('/get-movies');
 });
-
-router.get("/modificar-pelicula", (req,res)=>{
-  movieController.Get((movie, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener peliculas"
-      });
-    else {
-      res.render("update_movie", {movie});
-    }
-  });
-});
-
-router.post("/updateMovie", (req, res) => {
+  
+router.post("/updateMovie", (req,res) => {
   console.log(req.body);
     if(!!req.body.id){ 
       console.log(req.body.id);
+      movieController.UpdateMovie(req.body,req.body.id)
+    };
+  res.redirect('/get-movies');
+});
+
+router.post("/deleteMovie", (req,res) => {
+  movieController.DeleteMovie(req.body,req.body.titulo);
+  res.redirect('/get-movies');
+});
+
+router.post("/getMoviesByGenreId", (req,res) => {
+  let movies;
+  movieController.GetMoviesByGenre(req.body,(gMovies,err) => {
+    movies = gMovies;
+  });
+  res.render('get_movies', {movies});
+});
+
+/*---------------------------THEATER--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/create-theater", (req, res) => {
+  res.render("create_theater", {title: "Agregar Sede"});
+});
+
+router.get("/get-theaters", (req,res)=>{
+  theaterController.GetTheaters((theater, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("get_theaters", {theater});
+    }
+  });
+});
+
+router.get("/update-theater", (req,res)=>{
+  theaterController.GetTheaters((theater, err) => {
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("update_theater", {theater});
+    }
+  });
+});
+
+<<<<<<< HEAD
+router.get("/modificar-pelicula", (req,res)=>{
+  movieController.Get((movie, err) => {
+=======
+router.get('/delete-theater', (req,res)=>{
+  theaterController.GetTheaters((theater, err) => {
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("delete_theater", {theater});
+    }
+  });
+});
+/*-----------------POST-------------------*/
+router.post("/createTheater" ,(req,res)=>{
+  theaterController.CreateTheater(req.body);
+  res.redirect('/get-theaters');
+});
+
+router.post("/updateTheater", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+<<<<<<< HEAD
       movieController.Update(req.body,req.body.id)
   };
   res.redirect('/get-peliculas');
@@ -61,17 +195,38 @@ router.post("/updateMovie", (req, res) => {
 
 router.get('/eliminar-pelicula', (req,res)=>{
   movieController.Get((movie, err) => {
+=======
+      theaterController.UpdateTheater(req.body,req.body.id)
+  };
+  res.redirect('/get-theaters');
+});
+
+router.post("/deleteTheater",(req,res)=>{
+  theaterController.DeleteTheater(req.body,req.body.id);
+  res.redirect('/get-theaters');
+});
+
+/*-----------------------------------Technology_Type------------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/create-technology", (req, res) => {
+  res.render("create_technology", { title: "Agregar technology"});
+});
+
+router.get("/get-technology", (req,res)=>{
+  technologyController.GetTechnologyTypes((technology, err) => {
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
     if (err)
       res.json({
         success: false,
-        msg: "Fallo en obtener peliculas"
+        msg: "Failed to obtain technology types"
       });
     else {
-      res.render("delete_movie", {movie});
+      res.render("get_technology", {technology});
     }
   });
 });
 
+<<<<<<< HEAD
 router.post("/delete-pelicula",(req,res)=>{
   movieController.Delete(req.body,req.body.titulo);
   res.redirect('/get-peliculas');
@@ -205,6 +360,254 @@ router.post("/delete-technology",(req,res)=>{
 });
 
 
+=======
+router.get("/update-technology", (req,res)=>{
+  technologyController.GetTechnologyTypes((technology, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain technology types"
+      });
+    else {
+      res.render("update_technology", {technology});
+    }
+  });
+});
+
+router.get('/delete-technology', (req,res)=>{
+  technologyController.GetTechnologyTypes((technology, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain technology types"
+      });
+    else {
+      res.render("delete_technology", {technology});
+    }
+  });
+});
+/*-----------------POST-------------------*/
+router.post("/createTechnology" ,(req,res)=>{
+  technologyController.CreateTechnologyType(req.body);
+  res.redirect('/get-technology');
+});
+
+router.post("/updateTechnology", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      technologyController.UpdateTechnologyType(req.body,req.body.id)
+  };
+  res.redirect('/get-technology');
+});
+
+router.post("/deleteTechnology",(req,res)=>{
+  technologyController.DeleteTechnologyType(req.body,req.body.id);
+  res.redirect('/get-technology');
+});
+
+/*-----------------------------------ROOMS------------------------------------*/
+/*-----------------GET-------------------*/
+//create
+router.get("/create-room", (req, res) => {
+  let roomType;
+  let techType;
+  let aisle;
+  let entrance;
+  let exit;
+
+  aisleController.GetAisles((gAisle, err) => {
+    aisle = gAisle;
+  });
+
+  aisleController.GetAisles((gAisle, err) => {
+    aisle = gAisle;
+  });
+
+  entranceController.GetEntrances((gEntrance, err) => {
+    entrance = gEntrance;
+  });
+
+  exitController.GetExits((gExit, err) => {
+    exit = gExit;
+  });
+  
+  technologyController.GetTechnologyTypes((gTechType, err) => {
+    roomType = gTechType;
+  });
+  
+  roomTypeController.GetRoomTypes((gRoomType, err) => {
+    roomType = gRoomType;
+  });
+  
+  theaterController.GetTheaters((theater, err) =>{
+    if(err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else{
+      res.render("create_room", {roomType, techType, theater, entrance, exit, aisle});
+    }
+  });
+});
+//get
+router.get("/get-room", (req,res)=>{
+  roomController.GetRooms((room, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain rooms"
+      });
+    else {
+      res.render("get_rooms", {room});
+    }
+  });
+});
+//update
+router.get("/update-room", (req,res)=>{
+  let roomType;
+  let techType;
+
+  technologyController.GetTechnologyTypes((gTechType, err) => {
+    roomType = gTechType;
+  });
+  
+  roomTypeController.GetRoomTypes((gRoomType, err) => {
+    roomType = gRoomType;
+  });
+
+  roomController.GetRooms((room, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain rooms"
+      });
+    else {
+      res.render("update_room", {room, roomType, techType});
+    }
+  });
+});
+//delete
+router.get('/delete-room', (req,res)=>{
+  roomController.GetRooms((room, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain rooms"
+      });
+    else {
+      res.render("delete_room", {room});
+    }
+  });
+});
+
+/*-----------------POST-------------------*/
+//create
+router.post("/createRoom" ,(req,res)=>{
+  roomController.roomController(req.body);
+  res.redirect('/get-rooms');
+});
+//update
+router.post("/updateRoom", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      roomController.UpdateRoom(req.body,req.body.id)
+  };
+  res.redirect('/get-rooms');
+});
+//delete
+router.post("/deleteRoom",(req,res)=>{
+  roomController.DeleteRoom(req.body,req.body.id);
+  res.redirect('/get-rooms');
+});
+
+/*-----------------------------------ROOM TYPES------------------------------------*/
+/*-----------------GET-------------------*/
+//create
+router.get("/create-roomType", (req, res) => {
+  roomTypeController.GetRoomTypes((roomType, err) => {
+    res.render("create_roomType", {roomType});
+  });
+});
+//update
+router.get("/update-roomType", (req,res)=>{
+  roomTypeController.GetRooms((roomType, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain room types"
+      });
+    else {
+      res.render("update_roomType", {roomType});
+    }
+  });
+});
+//delete
+router.get('/delete-roomType', (req,res)=>{
+  roomTypeController.GetRoomTypes((roomType, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain room types"
+      });
+    else {
+      res.render("delete_roomType", {roomType});
+    }
+  });
+});
+
+/*-----------------POST-------------------*/
+//create
+router.post("/createRoomType" ,(req,res)=>{
+  roomTypeController.CreateRoomType(req.body);
+  res.redirect('/create-roomType');
+});
+//update
+router.post("/updateRoomType", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      roomTypeController.UpdateRoomType(req.body,req.body.id)
+  };
+  res.redirect('/update-roomType');
+});
+//delete
+router.post("/deleteRoomType",(req,res)=>{
+  roomController.DeleteRoom(req.body,req.body.id);
+  res.redirect('/update-roomType');
+});
+//getters
+router.post("/getRoomsByTheaterId",(req,res)=>{
+  roomController.GetRoomsByTheaterId((theater,err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("get_theaters", {theater});
+    }
+  });
+});
+
+/*---------------------------GENRE--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/get-genres",(req,res) => {
+  genreController.GetGenres((genre, err)=> {
+    res.render("get_genres", {genre});
+  })
+});
+router.get("/create-genre",(req,res) => {
+    res.render("create_genre");
+});
+/*-----------------POST-------------------*/
+router.post("/createGenre",(req,res) => {
+  genreController.CreateGenre(req.body);
+  res.redirect("/get-genres");
+});
+>>>>>>> 4dbf05f9372a73d07731f29c0b02b5d021eeb177
 
 /*----------------------------------------------------------------------*/
 router.get("signin", (req, res) => {

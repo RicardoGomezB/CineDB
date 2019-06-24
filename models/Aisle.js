@@ -28,4 +28,4 @@ const Aisle = sequelize.define("Aisle", {
 );
 
 Aisle.sync();
-module.exports = Room;
+module.exports = Aisle;

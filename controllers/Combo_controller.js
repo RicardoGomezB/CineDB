@@ -4,7 +4,7 @@ const Combo = require('../models/Combo');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateCombo = async function(data){
     try{
         console.log(data);
         Combo.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetCombos = async function(callback){
     try {
         let response = await Combo.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateCombo = async function (data){
     let response = Combo.update({
         Dish_id: data.Dish_id,
         Theater_id: data.Theater_id
@@ -36,7 +36,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteCombo = async function (data){
     console.log(data);
     let response = Combo.destroy({
         where:{

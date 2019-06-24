@@ -1,31 +1,50 @@
 extends layout
 
 block content
-    .col-sm-8#table
-        h3#text PELÍCULAS AGREGADAS
-        hr
-        br
-        table.table.bg-white
-            thead
-                tr(style="text-align:center;")
-                  th(scope='col') Id
-                  th(scope='col') Título
-                  th(scope='col') Descripción
-                  th(scope='col') Duración
-                  th(scope='col') Género
-                  th(scope='col') Fecha de estreno
-            tbody
-            -for(let i = 0; i <movie.length; i++)
-                tr(style="text-align:center;")
-                    th(scope='row')
-                        h5 #{movie[i].id}
-                    td
-                        h5 #{movie[i].Title}
-                    td 
-                        h5 #{movie[i].Description}
-                    td
-                        h5 #{movie[i].Duration}
-                    td
-                        h5 #{movie[i].Genre}
-                    td
-                        h5 #{movie[i].Release_date}
+
+    .card
+        .card-body
+            .card
+                .card-body
+                    form(method="POST", action="/getMoviesByGenreId" )
+                        .col-sm-3
+                            select(name='id', class="form-control", id="id")
+                                -for(let i = 0; i < genre.length; i++)
+                                    option(value=genre[i].id) #{genre[i].Genre_type}
+                        br
+                        button.btn.btn-primary.btn-lg(type="submit" ) Filtrar
+            .card
+                .card-body
+                    .container-fluid.row
+                        .container-fluid.col-8#table
+                            h3#text PELÍCULAS AGREGADAS
+                            hr
+                            br
+                            table.table.bg-white
+                                thead
+                                    tr(style="text-align:center;")
+                                        th(scope='col') Título
+                                        th(scope='col') Descripción
+                                        th(scope='col') Duración
+                                        th(scope='col') Género
+                                        th(scope='col') Fecha de estreno
+                                tbody
+                                -for(let i = 0; i <movie.length; i++)
+                                    tr(style="text-align:center;")
+                                        th(scope='row')
+                                            h5 #{movie[i].Title}
+                                        td 
+                                            h5 #{movie[i].Description}
+                                        td
+                                            h5 #{movie[i].Duration}
+                                        td
+                                            h5 #{movie[i].Genre_id}
+                                        td
+                                            h5 #{movie[i].Release_date}
+                        .container.col-3(style='background-color:white;')
+                            .list-group
+                            a.list-group-item.list-group-item-action.active(href='#')
+                                | Administar lista de películas
+                            a.list-group-item.list-group-item-action(href='/create-movie') Agregar película
+                            a.list-group-item.list-group-item-action(href='/update-movie') Modificar película 
+                            a.list-group-item.list-group-item-action(href='/delete-movie') Eliminar película 

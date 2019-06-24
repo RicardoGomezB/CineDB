@@ -17,7 +17,7 @@ const Subtitle = sequelize.define("Subtitle", {
     indexes: [
       {
         unique: true,
-        fields: [Movie_id, Language_id]
+        fields: ['Movie_id', 'Language_id']
       }
     ]
   }

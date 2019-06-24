@@ -8,14 +8,14 @@ block content
         br
         .card
             .card-body
-                form(method="POST", action="/updatetheater" )
+                form(method="POST", action="/updateTheater" )
                     .row
                         .col-sm-3
                             label Seleccione una Sede 
                             br
-                            select(name='Fiscal_name', class="form-control", id="Fiscal_name")
+                            select(name='id', class="form-control", id="id")
                                 -for(let i = 0; i < theater.length; i++)
-                                    option(value=theater[i].Fiscal_name) #{theater[i].Fiscal_name}
+                                    option(value=theater[i].id) #{theater[i].Fiscal_name}
                         .col-sm-3
                             label Horario de Apertura
                             br

@@ -13,15 +13,9 @@ const Censorship_level = sequelize.define("Censorship_level", {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
-    },
+    }
   }, 
   {
-    indexes: [
-      {
-        unique: true,
-        fields: [DESCRIPTION]
-      }
-    ],
     underscored: true
   }
 );

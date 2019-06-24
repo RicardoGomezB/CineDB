@@ -24,21 +24,22 @@ const Movie_repertory = sequelize.define("Movie_repertory", {
     }
   },
   {
+    underscored: true,
     indexes: [
       {
         unique: true,
-        fields: [Movie_id, Theater_id, Language_id, Subtitle_id]     
+        name: 'Movie_repertory_combination_idx',
+        fields: ['Movie_id', 'Theater_id', 'Language_id', 'Subtitle_id']     
       }
-    ],
-    underscored: true
+    ]
   }
 );
 
 Movie.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Movie_id'});
 Theater.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Theater_id'});
 Subtitle.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Subtitle_id'});
-Censorship_level.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Censorship_level_id'});
 Language.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Language_id'});
+Censorship_level.hasMany(Movie_repertory, {as: 'Movie_repertories', foreignKey: 'Censorship_level_id'});
 
 Movie_repertory.sync();
 module.exports = Movie_repertory;

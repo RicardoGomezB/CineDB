@@ -4,7 +4,7 @@ const Room_in_maintenance = require('../models/Room_in_maintenance');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateRoomInMaintenance = async function(data){
     try{
         console.log(data);
         Room_in_maintenance.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetRoomInMaintenances = async function(callback){
     try {
         let response = await Room_in_maintenance.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Delete = async function (data){
+controller.DeleteRoomInMaintenance = async function (data){
     console.log(data);
     let response = Room_in_maintenance.destroy({
         where:{

@@ -4,7 +4,7 @@ const Censorship_level = require('../models/Censorship_level');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateCensorshipLevel = async function(data){
     try{
         console.log(data);
         Censorship_level.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetCensorshipLevels = async function(callback){
     try {
         let response = await Movie.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateCensorshipLevel = async function (data){
     let response = Movie.update({
         Description: data.Description,
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteCensorshipLevel = async function (data){
     console.log(data);
     let response = Censorship_level.destroy({
         where:{

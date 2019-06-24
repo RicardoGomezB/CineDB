@@ -4,7 +4,7 @@ const Theater = require('../models/Theater');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateTheater = async function(data){
     try{
         console.log(data);
         Theater.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetTheaters = async function(callback){
     try {
         let response = await Theater.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateTheater = async function (data){
     let response = Theater.update({
         Fiscal_name : data.Fiscal_name,
         Opening_time : data.Opening_time,
@@ -39,7 +39,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteTheater = async function (data){
     console.log(data);
     let response = Theater.destroy({
         where:{

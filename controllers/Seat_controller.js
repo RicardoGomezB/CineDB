@@ -4,7 +4,7 @@ const Seat = require('../models/Seat');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateSeat = async function(data){
     try{
         console.log(data);
         Seat.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetSeats = async function(callback){
     try {
         let response = await Seat.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateSeat = async function (data){
     let response = Seat.update({
         Room_id: data.Room_id,
         Row: data.Row,
@@ -37,7 +37,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteSeat = async function (data){
     console.log(data);
     let response = Seat.destroy({
         where:{

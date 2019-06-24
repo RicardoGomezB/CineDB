@@ -8,22 +8,29 @@ block content
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
-            | Sede
-          a.list-group-item.list-group-item-action(href='AgregarSede') Agregar nueva sede 
-          a.list-group-item.list-group-item-action(href='#') Modificar Sede 
+            | Sedes y salas
+          a.list-group-item.list-group-item-action(href='get-theaters') Ver Sedes
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
-            | Película 
-          a.list-group-item.list-group-item-action(href='/agregar-pelicula') Agregar película
-          a.list-group-item.list-group-item-action(href='/get-peliculas') Lista de películas
-          a.list-group-item.list-group-item-action(href='/modificar-pelicula') Modificar película 
-          a.list-group-item.list-group-item-action(href='/eliminar-pelicula') Eliminar película 
+            |  Peliculas y funciones
+          a.list-group-item.list-group-item-action(href='/get-movies') Lista de películas
+          a.list-group-item.list-group-item-action(href='/get-movies') Funciones
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Confiteria y combos
-          a.list-group-item.list-group-item-action(href='/agregar-comida') Agregar Comida
-          a.list-group-item.list-group-item-action(href='#') Eliminar Comida
-          a.list-group-item.list-group-item-action(href='#') Crear combo
-          a.list-group-item.list-group-item-action(href='#') Eliminar combo
+          a.list-group-item.list-group-item-action(href='/create-food') Agregar Comida
+          a.list-group-item.list-group-item-action(href='/delete-food') Eliminar Comida
+          a.list-group-item.list-group-item-action(href='create-combo') Crear combo
+          a.list-group-item.list-group-item-action(href='update-combo') Modificar combo
+          a.list-group-item.list-group-item-action(href='/delete-combo') Eliminar combo
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Confiteria y combos
+          a.list-group-item.list-group-item-action(href='/create-food') Agregar Comida
+          a.list-group-item.list-group-item-action(href='/delete-food') Eliminar Comida
+          a.list-group-item.list-group-item-action(href='create-combo') Crear combo
+          a.list-group-item.list-group-item-action(href='update-combo') Modificar combo
+          a.list-group-item.list-group-item-action(href='/delete-combo') Eliminar combo

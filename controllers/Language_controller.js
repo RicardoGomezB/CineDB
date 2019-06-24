@@ -4,7 +4,7 @@ const Language = require('../models/Language');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateLanguage = async function(data){
     try{
         console.log(data);
         Language.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetLanguages = async function(callback){
     try {
         let response = await Language.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateLanguage = async function (data){
     let response = Language.update({
         Language: data.Language
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteLanguage = async function (data){
     console.log(data);
     let response = Language.destroy({
         where:{

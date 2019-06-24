@@ -4,7 +4,7 @@ const Entrance = require('../models/Entrance');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateEntrance = async function(data){
     try{
         console.log(data);
         Entrance.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetEntrances = async function(callback){
     try {
         let response = await Entrance.findAll({ 
         });

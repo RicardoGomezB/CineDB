@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+    .col-sm-9#form
+        h3 Actualizar Sede
+        hr
+        br
+        .card
+            .card-body
+                form(method="POST", action="/updateTheater" )
+                    .row
+                        .col-sm-3
+                            label Seleccione una Sede 
+                            br
+                            select(name='id', class="form-control", id="id")
+                                -for(let i = 0; i < theater.length; i++)
+                                    option(value=theater[i].id) #{theater[i].Fiscal_name}
+                        .col-sm-3
+                            label Horario de Apertura
+                            br
+                            input(type="time", name="Opening_time", id="Opening_time", class="form-control")
+                        .col-sm-3
+                            label Horario de Clausura
+                            br
+                            input(type="time", name="Closing_time", id="Closing_time", class="form-control")
+                        .col-sm-3
+                            label Ubicación
+                            br
+                            input(type="text", name="Location", id="Location", class="form-control")
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Actualizar

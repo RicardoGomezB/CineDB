@@ -4,7 +4,7 @@ const Movie = require('../models/Movie');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateMovie = async function(data){
     try{
         console.log(data);
         Movie.create(data);
@@ -13,11 +13,12 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetMovies = async function(callback){
     try {
         let response = await Movie.findAll({ 
         });
         let movie = response.map(result => result.dataValues);
+        
         callback(movie, null);
         
     } catch (error) {
@@ -25,12 +26,13 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateMovie = async function (data){
     let response = Movie.update({
         Description: data.Description,
         Title: data.Title,
         Duration: data.Duration,
-        Release_date: data.Release_date
+        Release_date: data.Release_date,
+        Genre_id: data.Genre_id
     },{
         where:{
             id: data.id
@@ -38,12 +40,28 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteMovie = async function (data){
     console.log(data);
     let response = Movie.destroy({
         where:{
             id: data.id
         }
     })
+}
+
+controller.GetMoviesByGenre = async function(data, callback){
+    try {
+        console.log(data);
+        let response = Movie.findAll({ 
+            where: {
+                Genre_id: data.Genre_id
+            }
+        });
+        let movie = response.map(result => result.dataValues);
+        
+        callback(movie, null);
+    } catch (error) {
+        callback(error, null);
+    }
 }
 module.exports = controller;

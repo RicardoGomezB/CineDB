@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .col-sm-8#table
+        h3#text Technology_type
+        hr
+        br
+        table.table.bg-white
+            thead
+                tr(style="text-align:center;")
+                  th(scope='col') Id
+                  th(scope='col') Título
+                  th(scope='col') Descripción
+                  th(scope='col') Duración
+                  th(scope='col') Género
+                  th(scope='col') Fecha de estreno
+            tbody
+            -for(let i = 0; i <technology.length; i++)
+                tr(style="text-align:center;")
+                    th(scope='row')
+                        h5 #{technology[i].id}
+                    td
+                        h5 #{technology[i].Description}

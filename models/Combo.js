@@ -16,7 +16,7 @@ const Combo = sequelize.define("Combo", {
     indexes: [
       {
         unique: true,
-        fields: [id, Dish_id, Theater_id]
+        fields: ['id', 'Dish_id', 'Theater_id']
       }
     ],
     underscored: true

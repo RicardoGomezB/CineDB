@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  .main-container.container-fluid
+    .row
+      .col-md-6.col-md-offset-3
+        h2 Agregar Sede
+
+        // register form
+        form(method='POST' action='/createTheater')
+          div.form-group
+            label(for='Fiscal_name') Nombre de la Sede:
+            input(type='text', name="Fiscal_name", id="Fiscal_name",class="form-control")
+          div.form-group
+            label(for='Opening_time') Horario de Apertura:
+            input(type='time', placeholder='hh:mm:ss', id="Opening_time", name='Opening_time', class="form-control")
+          div.form-group
+            label(for='Closing_time') Horario de Clausura:
+            input(type='time', placeholder = 'hh:mm:ss' name='Closing_time', id ='Closing_time', class='form-control')
+          div.form-group
+            label(for='Location') Ubicación:
+            input(type='text',  name='Location', id="Location", class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

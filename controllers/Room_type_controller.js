@@ -4,7 +4,7 @@ const Room_type = require('../models/Room_type');
 
 const controller = {};
 
-controller.Create = async function(data){
+controller.CreateRoomType = async function(data){
     try{
         console.log(data);
         Room_type.create(data);
@@ -13,7 +13,7 @@ controller.Create = async function(data){
     }
 };
 
-controller.Get = async function(callback){
+controller.GetRoomTypes = async function(callback){
     try {
         let response = await Room_type.findAll({ 
         });
@@ -25,7 +25,7 @@ controller.Get = async function(callback){
     }
 }
 
-controller.Update = async function (data){
+controller.UpdateRoomType = async function (data){
     let response = Room_type.update({
         Description: data.Description,
     },{
@@ -35,7 +35,7 @@ controller.Update = async function (data){
     });
 }
 
-controller.Delete = async function (data){
+controller.DeleteRoomType = async function (data){
     console.log(data);
     let response = Room_type.destroy({
         where:{

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .card  
+        .card-body
+            .main-container.container-fluid
+                .row
+                .col-md-6.col-md-offset-3
+                    h2 AGREGAR PLATO
+                    // register form
+                    form(method='POST' action='/create-dish')
+                    div.form-group
+                        label(for='Dish') Plato:
+                        input(type='text', name="description", id="description",class="form-control")
+                    button.btn.btn-success(type='submit') Agregar

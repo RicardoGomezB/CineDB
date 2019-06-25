@@ -4,7 +4,7 @@ block content
     .card
         .card-body
             .col-sm-8#table
-                h3#text Technology_type
+                h3#text LISTA DE PLATOS
                 hr
                 br
                 table.table.bg-white
@@ -13,9 +13,9 @@ block content
                         th(scope='col') Id
                         th(scope='col') Descripción
                     tbody
-                    -for(let i = 0; i <technology.length; i++)
+                    -for(let i = 0; i <dish.length; i++)
                         tr(style="text-align:center;")
                             th(scope='row')
-                                h5 #{technology[i].id}
+                                h5 #{dish[i].id}
                             td
-                                h5 #{technology[i].Description}
+                                h5 #{dish[i].Description}

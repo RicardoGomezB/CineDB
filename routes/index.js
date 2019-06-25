@@ -16,6 +16,7 @@ const theaterController = require("../controllers/Theater_controller");
 const technologyController = require("../controllers/Technology_type_controller");
 const roomController = require("../controllers/Room_controller");
 const roomTypeController = require("../controllers/Room_type_controller");
+const dishController = require("../controllers/Dish_controller")
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -39,6 +40,14 @@ router.get("/sede", (req,res) => {
 
 router.get("/sala", (req,res) => {
   res.render("sala", { title: (req,res)});
+});
+
+router.get("/comida", (req,res) => {
+  res.render("comida", { title: (req,res)});
+});
+
+router.get("/lenguaje", (req,res) => {
+  res.render("lenguaje", { title: (req,res)});
 });
 
 /*----------------------MOVIES------------------------------*/
@@ -451,7 +460,69 @@ router.post("/createGenre",(req,res) => {
   genreController.CreateGenre(req.body);
   res.redirect("/get-genres");
 });
+/*--------------------------------------------------COMIDA------------------------------------*/
+  /*-----------------GET-------------------*/
+router.get("/create-dish", (req, res) => {
+  res.render("create_dish", {title: "Agregar dish"});
+});
 
+router.get("/get-dish", (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("get_dish", {dish});
+    }
+  });
+});
+
+router.get("/update-dish", (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("update_dish", {dish});
+    }
+  });
+});
+
+router.get('/delete-dish', (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("delete_dish", {dish});
+    }
+  });
+});
+/*-----------------POST-------------------*/
+router.post("/createdish" ,(req,res)=>{
+  dishController.CreateDish(req.body);
+  res.redirect('/get-dish');
+});
+
+router.post("/updatedish", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      dishController.UpdateDish(req.body,req.body.id)
+  };
+  res.redirect('/get-dish');
+});
+
+router.post("/deletedish",(req,res)=>{
+  dishController.DeleteDish(req.body,req.body.id);
+  res.redirect('/get-dish');
+});
 /*----------------------------------------------------------------------*/
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });

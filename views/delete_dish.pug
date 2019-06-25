@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .card
+        .card-body
+            .col-sm-9#form
+                h3 ELIMINAR PLATO
+                hr
+                br
+                .card
+                    .card-body  
+                        form(method="POST", action="/deletedish" )
+                            .row
+                                .col-sm-3
+                                    select(name='id', class="form-control", id="id")
+                                        -for(let i = 0; i < dish.length; i++)
+                                            option(value=dish[i].id) #{dish[i].description}
+                            br
+                            button.btn.btn-success.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

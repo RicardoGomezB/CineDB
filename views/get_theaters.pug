@@ -1,36 +1,46 @@
 extends layout
 
 block content
+
     .card
         .card-body
-            .container-fluid.row
-                .container-fluid.col-8#table
-                    h3#text Sedes Disponibles
-                    hr
-                    br
-                    table.table.bg-white
-                        thead
-                            tr(style="text-align:center;")
-                                th(scope='col') Fiscal Name
-                                th(scope='col') Location
-                                th(scope='col') Opening Time
-                                th(scope='col') Closing Time                
-                        tbody
-                        -for(let i = 0; i <theater.length; i++)
-                            tr(style="text-align:center;")
-                                th(scope='row')
-                                    h5 #{theater[i].Fiscal_name}
-                                td 
-                                    h5 #{theater[i].Location}
-                                td
-                                    h5 #{theater[i].Opening_time}
-                                td
-                                    h5 #{theater[i].Closing_time}
+            .card
+                .card-body
+                    div.container-fluid.d-inline
+                        div.d-inline.float-left(style='background-color:white;')
+                            a.btn.btn-outline-success.m-3.d-inline(href="javascript:history.back()") Regresar
+                        div.d-inline.float-right(style='background-color:white;')
+                            a.btn.btn-outline-success.m-3.d-inline(href='/create-theater') Agregar sede
+                            a.btn.btn-outline-success.m-3.d-inline(href='/update-theater') Modificar sede 
+            .card
+                .card-body
+                    .container-fluid.row
+                        .container-fluid.col-8#table
+                            h3#text SEDES DISPONIBLES
+                            hr
+                            br
+                            table.table.bg-white
+                                thead
+                                    tr(style="text-align:center;")
+                                        th(scope='col') Id
+                                        th(scope='col') Fiscal Name
+                                        th(scope='col') Location
+                                        th(scope='col') Opening Time
+                                        th(scope='col') Closing Time     
+                                tbody
+                                    -for(let i = 0; i <theater.length; i++)
+                                        tr(style="text-align:center;")
+                                            th(scope='row')
+                                                h5 #{theater[i].id}
+                                            td
+                                                h5 #{theater[i].Fiscal_name}
+                                            td 
+                                                h5 #{theater[i].Location}
+                                            td
+                                                h5 #{theater[i].Opening_time}
+                                            td
+                                                h5 #{theater[i].Closing_time}
+                                            td
+                                                form(method='POST' action='/deleteTheater')
+                                                    button.btn.btn-danger(value=theater[i].id, name='id') X 
 
-                .container-fluid.col-3(style='background-color:white;')
-                    .list-group
-                    a.list-group-item.list-group-item-action.active(href='#')
-                        | Administrar sedes 
-                    a.list-group-item.list-group-item-action(href='/create-theater') Agregar sede
-                    a.list-group-item.list-group-item-action(href='/update-theater') Modificar sede 
-                    a.list-group-item.list-group-item-action(href='/delete-theater') Eliminar sede 

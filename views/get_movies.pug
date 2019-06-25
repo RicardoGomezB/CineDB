@@ -6,13 +6,17 @@ block content
         .card-body
             .card
                 .card-body
-                    form(method="POST", action="/getMoviesByGenreId" )
-                        .col-sm-3
-                            select(name='id', class="form-control", id="id")
-                                -for(let i = 0; i < genre.length; i++)
-                                    option(value=genre[i].id) #{genre[i].Genre_type}
-                        br
-                        button.btn.btn-success.btn-lg(type="submit" ) Filtrar
+                    div.container-fluid.d-inline.float-left
+                        a.btn.btn-outline-success.m-3.d-inline.mr-5(href="javascript:history.back()") Regresar
+                        form.w-50.d-inline.ml-5(method="POST", action="/getMoviesByGenreId" )
+                            .col-sm-3.d-inline
+                                select.d-inline.w-25(name='Genre_id', class="form-control", id="Genre_id")
+                                    -for(let i = 0; i < genre.length; i++)
+                                        option(value=genre[i].id) #{genre[i].Genre_type}
+                            button.btn.btn-success.text-center.d-inline(type="submit" ) Filtrar
+                        div.d-inline.float-right(style='background-color:white;')
+                            a.btn.btn-outline-success.m-3.d-inline(href='/create-movie') Agregar película
+                            a.btn.btn-outline-success.m-3.d-inline(href='/update-movie') Modificar película 
             .card
                 .card-body
                     .container-fluid.row
@@ -41,10 +45,6 @@ block content
                                             h5 #{movie[i].Genre_id}
                                         td
                                             h5 #{movie[i].Release_date}
-                        .container.col-3(style='background-color:white;')
-                            .list-group
-                            a.list-group-item.list-group-item-action.active(href='#')
-                                | Administar lista de películas
-                            a.list-group-item.list-group-item-action(href='/create-movie') Agregar película
-                            a.list-group-item.list-group-item-action(href='/update-movie') Modificar película 
-                            a.list-group-item.list-group-item-action(href='/delete-movie') Eliminar película 
+                                        td
+                                            form(method='POST' action='/deleteMovie')
+                                                button.btn.btn-danger(value=movie[i].id, name='id') X 

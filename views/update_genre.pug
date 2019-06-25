@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+    .col-sm-9#form
+        h3 MODIFICAR GENERO
+        hr
+        br
+        .card
+            .card-body
+                form(method="POST", action="/updateGenre" )
+                    .row
+                        .col-sm-3
+                            label Seleccionar:
+                            br
+                            select(name='id', class="form-control", id="id")
+                                -for(let i = 0; i < genre.length; i++)
+                                    option(value=genre[i].id) #{genre[i].Genre_type}
+                        .col-sm-3
+                            label Genero
+                            br
+                            input(type="text", name="Genre_type", id="Genre_type", class="form-control")
+                    br
+                    button.btn.btn-success.btn-lg(type="submit", style="position:relative; left:45%;" ) Guardar cambio

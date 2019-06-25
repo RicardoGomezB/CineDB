@@ -3,7 +3,8 @@ extends layout
 block content
     .card
         .card-body
-            .container-fluid.row
+            a.btn.btn-outline-success.mr-5(href="javascript:history.back()") Regresar
+            .container-fluid
                 .container-fluid.col-8#table
                     h3#text GENEROS
                     hr
@@ -20,5 +21,10 @@ block content
                                     h5 #{genre[i].id}
                                 td
                                     h5 #{genre[i].Genre_type}
+                                //- td
+                                    //- form(method="POST" acton="/deleteGenre")
+                                    //-     button.btn.btn-danger(value=genre[i].id, name='id') X
             div.text-center
-                a.btn.btn-success(href='/create-genre')  Agregar genero
+                a.btn.btn-success.d-inline.m-3(href='/create-genre')  Agregar genero
+                a.btn.btn-success.d-inline.m-3(href='/update-genre')  Modificar genero
+                a.btn.btn-success.d-inline.m-3(href='/delete-genre')  Borrar genero

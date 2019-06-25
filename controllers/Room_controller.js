@@ -33,6 +33,10 @@ controller.UpdateRoom = async function (data){
         Exit_id: data.Exit_id,
         Entrance_id: data.Entrance_id,
         Aile_id: data.Aile_id,
+        Col_qty: data.Col_qty,
+        Row_qty: data.Row_qty,
+        Room_number: data.Room_number
+        
     },{
         where:{
             id: data.id

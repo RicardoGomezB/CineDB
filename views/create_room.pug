@@ -14,6 +14,9 @@ block content
                                 -for(let i = 0; i < theater.length; i++)
                                     option(value=theater[i].id) #{theater[i].Fiscal_name}
                         div.form-group
+                            label(for='Room_no') Numero de la sala:
+                                input(type='number', name='Room_number', id='Room_number',class="form-control")
+                        div.form-group
                             label(for='Room_type') Tipo de sala:
                             select(type="text", name="Room_type_id", id="Room_type_id")
                                 -for(let i = 0; i < roomType.length; i++)
@@ -23,6 +26,15 @@ block content
                             select(type="text", name="Technology_type_id", id="Technology_type_id")
                                 -for(let i = 0; i < techType.length; i++)
                                     option(value=techType[i].id) #{techType[i].Description}
+<<<<<<< HEAD
+=======
+                        div.form-group
+                            label(for='Row_qty') Cantidad de filas:
+                                input(type='number', name='Row_qty', id='Row_qty',class="form-control")
+                        div.form-group
+                            label(for='Col_qty') Cantidad de columnas:
+                                input(type='number', name='Col_qty', id='Col_qty',class="form-control")
+>>>>>>> dev-index.js
                         div.form-group
                             label(for='Aisle') Pasillos:
                             select(type="text", name='Aisle_id', id='Aisle_id', class="form_control")
@@ -49,4 +61,8 @@ block content
                                 option(value=1) Izquierda
                                 option(value=2) Izquierda y Derecha
                                 option(value=3) Derecha        
+<<<<<<< HEAD
                     button.btn.btn-success(type='submit') Agregar
+=======
+                        button.btn.btn-success(type='submit') Agregar
+>>>>>>> dev-index.js

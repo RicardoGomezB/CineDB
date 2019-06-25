@@ -1,21 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/Auth_controller");
-const userController = require("../controllers/User_controller");
+//CONTROLADORES DE LA PELICULA
 const movieController = require("../controllers/Movie_controller");
+const genreController = require("../controllers/Genre_controller");
+const censorshipController = require("../controllers/Censorship_level_controller");
+//CONTROLADORES DE LA SALA Y SILLAS
+const roomController = require("../controllers/Room_controller");
+const roomTypeController = require("../controllers/Room_type_controller");
+const technologyController = require("../controllers/Technology_type_controller");
 const aisleController = require("../controllers/Aisle_controller");
 const entranceController = require("../controllers/Entrance_controller");
 const exitController = require("../controllers/Exit_entrance");
-const screeningController = require("../controllers/Screening_controller");
-const comboController = require("../controllers/Combo_controller");
-const occupiedSeats = require("../controllers/Occupied_seats_controller");
 const seatController = require("../controllers/Seat_controller");
+//CONTROLADORES DE COMIDA Y COMBOS
+const comboController = require("../controllers/Combo_controller");
+const dishController = require("../controllers/Dish_controller");
+const dishTypeController = require("../controllers/Dish_type_controller");
+//CONTROLADORES MICELANEOS
+const occupiedSeatsController = require("../controllers/Occupied_seats_controller");
 const roomInMaintenanceController = require("../controllers/Room_in_maintenance_controller");
-const genreController = require("../controllers/Genre_controller");
+//CONTROLADORES DE SEDE, REPERTORIO Y FUNCIONES
 const theaterController = require("../controllers/Theater_controller");
-const technologyController = require("../controllers/Technology_type_controller");
-const roomController = require("../controllers/Room_controller");
-const roomTypeController = require("../controllers/Room_type_controller");
+const screeningController = require("../controllers/Screening_controller");
+const repertoryController = require("../controllers/Movie_repertory_controller");
+//CONTROLADORES DE IDIOMAS Y SUBTITULOS
+const subtitleController = require("../controllers/Subtitle_controller");
+const languageController = require("../controllers/Language_controller");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -80,6 +90,27 @@ router.get("/get-movies", (req,res)=>{
   });
 });
 
+router.get("/update-movie", (req,res)=>{
+  let genre;
+
+  genreController.GetGenres((gGenre) => {
+    genre = gGenre;
+  });
+
+  movieController.GetMovies((movie, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain movies"
+      });
+      else {
+
+        res.render("update_movie", {movie, genre});
+
+      }
+  });
+});
+
 router.get("/delete-movie", (req,res)=>{
   movieController.GetMovies((movie, err) => {
     if (err)
@@ -104,22 +135,28 @@ router.post("/updateMovie", (req,res) => {
   console.log(req.body);
     if(!!req.body.id){ 
       console.log(req.body.id);
-      movieController.UpdateMovie(req.body,req.body.id)
+      movieController.UpdateMovie(req.body, req.body.id);
     };
   res.redirect('/get-movies');
 });
 
 router.post("/deleteMovie", (req,res) => {
-  movieController.DeleteMovie(req.body,req.body.titulo);
+  movieController.DeleteMovie(req.body);
   res.redirect('/get-movies');
 });
 
 router.post("/getMoviesByGenreId", (req,res) => {
-  let movies;
-  movieController.GetMoviesByGenre(req.body,(gMovies,err) => {
-    movies = gMovies;
+  let genre;
+  let movie;
+
+  genreController.GetGenres((gGenre) => {
+    genre = gGenre;
   });
-  res.render('get_movies', {movies});
+  
+  movieController.GetMoviesByGenre(req.body,(gMovie,err) => {
+    movie = gMovie;
+  });
+  res.render('get_movies', {genre, movie});
 });
 
 /*---------------------------THEATER--------------------------------*/
@@ -349,7 +386,7 @@ router.get('/delete-room', (req,res)=>{
 /*-----------------POST-------------------*/
 //create
 router.post("/createRoom" ,(req,res)=>{
-  roomController.roomController(req.body);
+  roomController.CreateRoom(req.body);
   res.redirect('/get-rooms');
 });
 //update
@@ -443,8 +480,21 @@ router.get("/get-genres",(req,res) => {
     res.render("get_genres", {genre});
   })
 });
+
 router.get("/create-genre",(req,res) => {
     res.render("create_genre");
+});
+
+router.get("/update-genre",(req,res) => {
+  genreController.GetGenres((genre,err) => {
+    res.render("update_genre", {genre});
+  });
+});
+
+router.get("/delete-genre",(req,res) => {
+  genreController.GetGenres((genre,err) => {
+    res.render("delete_genre", {genre});
+  });
 });
 /*-----------------POST-------------------*/
 router.post("/createGenre",(req,res) => {
@@ -452,14 +502,95 @@ router.post("/createGenre",(req,res) => {
   res.redirect("/get-genres");
 });
 
-/*----------------------------------------------------------------------*/
-router.get("signin", (req, res) => {
-  res.render("auth/signin", { title: "Iniciar Sesion" });
+router.post('/deleteGenre', (req,res) => {
+  genreController.DeleteGenre(req.body);
+  res.redirect('/get-genres');
 });
-router.post("signin", authController.signin);
-router.get("signup", (req, res) => {
-  res.render("auth/signup", { title: "Registrarse" });
+
+router.post('/updateGenre', (req,res) => {
+  genreController.UpdateGenre(req.body);
+  res.redirect('/get-genres');
 });
-router.post("signup", userController.signup, authController.signin);
+
+/*---------------------------SUBTITLES--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/get-subtitles",(req,res) => {
+  let movie;
+
+  movieController.GetMovies((gMovie, err) => {
+    movie = gMovie;
+  });
+
+  subtitleController.GetSubtitles((subtitle, err)=> {
+    res.render("get_subtitles", {subtitle, movie});
+  })
+});
+
+/*-----------------POST-------------------*/
+router.post("/getSubtitlesByMovieId",(req,res) => {
+
+  subtitleController.GetSubtitlesByMovieId(req.body, (subtitle ,err) => {
+    res.render("get_subtitles", {subtitle});
+  })
+});
+
+
+/*---------------------------REPERTORY--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/create-repertory", (req,res) => {
+  let movie;
+  let theater;
+  let subtitle;
+  let language;
+  
+    movieController.GetMovies((gMovie, err) => {
+      movie = gMovie;
+    });
+  
+    theaterController.GetTheaters((gTheater, err) => {
+      theater = gTheater;
+    });
+  
+    subtitleController.GetSubtitles((gSubtitle, err) => {
+      subtitle = gSubtitle;
+    });
+  
+    languageController.GetLanguages((gLanguage, err) => {
+      language = gLanguage;
+    });
+  
+    censorshipController.GetCensorshipLevels((censorship, err) => {
+       res.render("create_repertory", {movie, theater, subtitle, language, censorship});
+    });
+});
+
+router.get("/get-rooms", (req, res) => {
+  roomController.GetRooms((room, err) => {
+    res.render("get_rooms", {room});
+  });
+});
+
+router.get("/update-room", (req, res) => {
+  roomController.UpdateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+/*-----------------POST-------------------*/
+router.post("/createRoom", (req, res) => {
+  roomController.CreateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+
+router.post("/updateRoom", (req, res) => {
+  roomController.UpdateRoom(req.body);
+  res.redirect("/get-rooms");
+});
+
+/*---------------------------REPERTORY--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/get-screening", (req, res) => {
+  
+});
+/*-----------------POST-------------------*/
+
 
 module.exports = router;

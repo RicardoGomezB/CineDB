@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    .card
+        .card-body
+            a.btn.btn-outline-success.mr-5(href="javascript:history.back()") Regresar
+            .card-body
+            .container-fluid.text-center
+                h3 ELIMINAR GENERO
+                hr
+                br
+                .card
+                    .card-body
+                        form.text-center(method="POST", action="/deleteGenre" )
+                            select.w-50.d-inline.float-left(name='id', class="form-control", id="id")
+                                -for(let i = 0; i < genre.length; i++)
+                                    option(value=genre[i].id) #{genre[i].Genre_type}
+                            button.btn.btn-success.float-right.d-inline(type="submit") Eliminar genero

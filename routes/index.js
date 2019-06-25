@@ -51,6 +51,14 @@ router.get("/sala", (req,res) => {
   res.render("sala", { title: (req,res)});
 });
 
+router.get("/comida", (req,res) => {
+  res.render("comida", { title: (req,res)});
+});
+
+router.get("/lenguaje", (req,res) => {
+  res.render("lenguaje", { title: (req,res)});
+});
+
 /*----------------------MOVIES------------------------------*/
 /*-----------------GET-------------------*/
 router.get("/create-movie", (req, res) => {
@@ -223,70 +231,6 @@ router.post("/deleteTheater",(req,res)=>{
   res.redirect('/get-theaters');
 });
 
-/*-----------------------------------Technology_Type------------------------------------*/
-/*-----------------GET-------------------*/
-router.get("/create-technology", (req, res) => {
-  res.render("create_technology", { title: "Agregar technology"});
-});
-
-router.get("/get-technology", (req,res)=>{
-  technologyController.GetTechnologyTypes((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain technology types"
-      });
-    else {
-      res.render("get_technology", {technology});
-    }
-  });
-});
-
-router.get("/update-technology", (req,res)=>{
-  technologyController.GetTechnologyTypes((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain technology types"
-      });
-    else {
-      res.render("update_technology", {technology});
-    }
-  });
-});
-
-router.get('/delete-technology', (req,res)=>{
-  technologyController.GetTechnologyTypes((technology, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain technology types"
-      });
-    else {
-      res.render("delete_technology", {technology});
-    }
-  });
-});
-/*-----------------POST-------------------*/
-router.post("/createTechnology" ,(req,res)=>{
-  technologyController.CreateTechnologyType(req.body);
-  res.redirect('/get-technology');
-});
-
-router.post("/updateTechnology", (req, res) => {
-  console.log(req.body);
-    if(!!req.body.id){ 
-      console.log(req.body.id);
-      technologyController.UpdateTechnologyType(req.body,req.body.id)
-  };
-  res.redirect('/get-technology');
-});
-
-router.post("/deleteTechnology",(req,res)=>{
-  technologyController.DeleteTechnologyType(req.body,req.body.id);
-  res.redirect('/get-technology');
-});
-
 /*-----------------------------------ROOMS------------------------------------*/
 /*-----------------GET-------------------*/
 //create
@@ -404,75 +348,6 @@ router.post("/deleteRoom",(req,res)=>{
   res.redirect('/get-rooms');
 });
 
-/*-----------------------------------ROOM TYPES------------------------------------*/
-/*-----------------GET-------------------*/
-//create
-router.get("/create-roomType", (req, res) => {
-  roomTypeController.GetRoomTypes((roomType, err) => {
-    res.render("create_roomType", {roomType});
-  });
-});
-//update
-router.get("/update-roomType", (req,res)=>{
-  roomTypeController.GetRooms((roomType, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain room types"
-      });
-    else {
-      res.render("update_roomType", {roomType});
-    }
-  });
-});
-//delete
-router.get('/delete-roomType', (req,res)=>{
-  roomTypeController.GetRoomTypes((roomType, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain room types"
-      });
-    else {
-      res.render("delete_roomType", {roomType});
-    }
-  });
-});
-
-/*-----------------POST-------------------*/
-//create
-router.post("/createRoomType" ,(req,res)=>{
-  roomTypeController.CreateRoomType(req.body);
-  res.redirect('/create-roomType');
-});
-//update
-router.post("/updateRoomType", (req, res) => {
-  console.log(req.body);
-    if(!!req.body.id){ 
-      console.log(req.body.id);
-      roomTypeController.UpdateRoomType(req.body,req.body.id)
-  };
-  res.redirect('/update-roomType');
-});
-//delete
-router.post("/deleteRoomType",(req,res)=>{
-  roomController.DeleteRoom(req.body,req.body.id);
-  res.redirect('/update-roomType');
-});
-//getters
-router.post("/getRoomsByTheaterId",(req,res)=>{
-  roomController.GetRoomsByTheaterId((theater,err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Failed to obtain theaters"
-      });
-    else {
-      res.render("get_theaters", {theater});
-    }
-  });
-});
-
 /*---------------------------GENRE--------------------------------*/
 /*-----------------GET-------------------*/
 router.get("/get-genres",(req,res) => {
@@ -511,6 +386,136 @@ router.post('/updateGenre', (req,res) => {
   genreController.UpdateGenre(req.body);
   res.redirect('/get-genres');
 });
+/*--------------------------------------------------COMIDA------------------------------------*/
+  /*-----------------GET-------------------*/
+router.get("/create-dish", (req, res) => {
+  dishTypeController.GetDishTypes((dishType, err) => {
+    res.render("create_dish", {dishType});
+  });
+});
+
+router.get("/get-dishes", (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("get_dishes", {dish});
+    }
+  });
+});
+
+router.get("/update-dish", (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("update_dish", {dish});
+    }
+  });
+});
+
+router.get('/delete-dish', (req,res)=>{
+  dishController.GetDishes((dish, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain theaters"
+      });
+    else {
+      res.render("delete_dish", {dish});
+    }
+  });
+});
+/*-----------------POST-------------------*/
+router.post("/createDish" ,(req,res)=>{
+  dishController.CreateDish(req.body);
+  res.redirect('/get-dishes');
+});
+
+router.post("/updateDish", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id){ 
+      console.log(req.body.id);
+      dishController.UpdateDish(req.body,req.body.id)
+  };
+  res.redirect('/get-dishes');
+});
+
+router.post("/deleteDish",(req,res)=>{
+  dishController.DeleteDish(req.body);
+  res.redirect('/get-dishes');
+});
+/*----------------------------------------------------------------------*/
+/*--------------------------------------------------DISH TYPE------------------------------------*/
+  /*-----------------GET-------------------*/
+router.get("/create-dish-type", (req, res) => {
+  res.render("create_dish_type");
+});
+
+router.get("/get-dish-types", (req,res)=>{
+  dishTypeController.GetDishTypes((dishType, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Failed to obtain dish types"
+      });
+    else {
+      res.render("get_dish_types", {dishType});
+    }
+  });
+});
+
+// router.get("/update-dish", (req,res)=>{
+//   dishController.GetDishes((dish, err) => {
+//     if (err)
+//       res.json({
+//         success: false,
+//         msg: "Failed to obtain theaters"
+//       });
+//     else {
+//       res.render("update_dish", {dish});
+//     }
+//   });
+// // });
+
+// router.get('/delete-dish', (req,res)=>{
+//   dishController.GetDishes((dish, err) => {
+//     if (err)
+//       res.json({
+//         success: false,
+//         msg: "Failed to obtain theaters"
+//       });
+//     else {
+//       res.render("delete_dish", {dish});
+//     }
+//   });
+// });
+/*-----------------POST-------------------*/
+router.post("/createDishType",(req,res)=>{
+  dishTypeController.CreateDishType(req.body);
+  res.redirect('/get-dish-types');
+});
+
+// router.post("/updateDish", (req, res) => {
+//   console.log(req.body);
+//     if(!!req.body.id){ 
+//       console.log(req.body.id);
+//       dishController.UpdateDish(req.body,req.body.id)
+//   };
+//   res.redirect('/get-dishes');
+// });
+
+router.post("/deleteDishType",(req,res)=>{
+  dishTypeController.DeleteDishType(req.body);
+  res.redirect('/get-dish-types');
+});
+/*----------------------------------------------------------------------*/
 
 /*---------------------------SUBTITLES--------------------------------*/
 /*-----------------GET-------------------*/
@@ -585,12 +590,93 @@ router.post("/updateRoom", (req, res) => {
   res.redirect("/get-rooms");
 });
 
-/*---------------------------REPERTORY--------------------------------*/
-/*-----------------GET-------------------*/
-router.get("/get-screening", (req, res) => {
+/*--------------------------------------------------TECH TYPE-----------------------------------*/
+  /*-----------------GET-------------------*/
+  router.get("/create-technology-type", (req, res) => {
+    res.render("create_technology");
+  });
   
-});
-/*-----------------POST-------------------*/
+  router.get("/get-technology-types", (req,res)=>{
+    technologyController.GetTechnologyTypes((techType, err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: "Failed to obtain tech types"
+        });
+      else {
+        res.render("get_technology", {techType});
+      }
+    });
+  });
+  /*-----------------POST-------------------*/
+  router.post("/createTechnologyType",(req,res)=>{
+    technologyController.CreateTechnologyType(req.body);
+    res.redirect('/get-technology-types');
+  });
+  
+  router.post("/deleteTechnologyType",(req,res)=>{
+    technologyController.DeleteTechnologyType(req.body);
+    res.redirect('/get-technology-types');
+  });
+  /*----------------------------------------------------------------------*/
 
+/*--------------------------------------------------ROOM TYPE-----------------------------------*/
+  /*-----------------GET-------------------*/
+  router.get("/create-room-type", (req, res) => {
+    res.render("create_room_type");
+  });
+  
+  router.get("/get-room-types", (req,res)=>{
+    roomTypeController.GetRoomTypes((roomType, err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: "Failed to obtain room types"
+        });
+      else {
+        res.render("get_room_types", {roomType});
+      }
+    });
+  });
+  /*-----------------POST-------------------*/
+  router.post("/createRoomType",(req,res)=>{
+    roomTypeController.CreateRoomType(req.body);
+    res.redirect('/get-room-types');
+  });
+  
+  router.post("/deleteRoomType",(req,res)=>{
+    roomTypeController.DeleteRoomType(req.body);
+    res.redirect('/get-room-types');
+  });
+  /*----------------------------------------------------------------------*/
 
+  /*--------------------------------------------------LANGUAGE-----------------------------------*/
+  /*-----------------GET-------------------*/
+  router.get("/create-language", (req, res) => {
+    res.render("create_language");
+  });
+  
+  router.get("/get-languages", (req,res)=>{
+    languageController.GetLanguages((language, err) => {
+      if (err)
+        res.json({
+          success: false,
+          msg: "Failed to obtain languages"
+        });
+      else {
+        res.render("get_languages", {language});
+      }
+    });
+  });
+  /*-----------------POST-------------------*/
+  router.post("/createLanguage",(req,res)=>{
+    languageController.CreateLanguage(req.body);
+    res.redirect('/get-languages');
+  });
+  
+  router.post("/deleteLanguage",(req,res)=>{
+    languageController.DeleteLanguage(req.body);
+    res.redirect('/get-languages');
+  });
+  /*----------------------------------------------------------------------*/
 module.exports = router;

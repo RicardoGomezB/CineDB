@@ -8,7 +8,7 @@ block content
                 .card-body
                     div.container-fluid.d-inline
                         div.d-inline.float-left(style='background-color:white;')
-                            a.btn.btn-outline-success.m-3.d-inline(href="javascript:history.back()") Regresar
+                            a.btn.btn-outline-success.m-3.d-inline(href="/administrar") Regresar
                         div.d-inline.float-right(style='background-color:white;')
                             a.btn.btn-outline-success.m-3.d-inline(href='/create-theater') Agregar sede
                             a.btn.btn-outline-success.m-3.d-inline(href='/update-theater') Modificar sede 
@@ -20,13 +20,14 @@ block content
                             hr
                             br
                             table.table.bg-white
-                                thead
+                                thead.text-center
                                     tr(style="text-align:center;")
                                         th(scope='col') Id
                                         th(scope='col') Fiscal Name
                                         th(scope='col') Location
                                         th(scope='col') Opening Time
-                                        th(scope='col') Closing Time     
+                                        th(scope='col') Closing Time
+                                        th     
                                 tbody
                                     -for(let i = 0; i <theater.length; i++)
                                         tr(style="text-align:center;")

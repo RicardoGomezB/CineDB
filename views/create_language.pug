@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .card  
+        .card-body
+            .main-container.container-fluid
+                .row
+                .col-md-6.col-md-offset-3
+                    h2 AGREGAR LENGUAJE
+                    // register form
+                    form(method='POST' action='/createLanguage')
+                        div.form-group
+                            label(for='Language') Idioma:
+                            input(type='text', name="Language", id="Language",class="form-control")
+                        button.btn.btn-success(type='submit') Agregar lenguage

@@ -9,7 +9,7 @@ block content
             .card
                 .card-body
                     .container-fluid.col-sm-8#table
-                        h3#text TIPOS DE REPRODUCCION
+                        h3#text LISTA DE PLATOS
                         hr
                         br
                         table.table.bg-white
@@ -17,16 +17,19 @@ block content
                                 tr(style="text-align:center;")
                                 th(scope='col') Id
                                 th(scope='col') Descripción
+                                th(scope='col') Tipo de plato
                                 th
                             tbody
-                            -for(let i = 0; i <techType.length; i++)
+                            -for(let i = 0; i <dish.length; i++)
                                 tr(style="text-align:center;")
                                     th(scope='row')
-                                        h5 #{techType[i].id}
+                                        h5 #{dish[i].id}
                                     td
-                                        h5 #{techType[i].Description}
+                                        h5 #{dish[i].description}
                                     td
-                                        form(method='POST', action='/deleteTechnologyType')
-                                            button.btn.btn-danger(value=techType[i].id, name='id') X
+                                        h5 #{dish[i].Dish_type_id}
+                                    td
+                                        form(method='POST', action='/deleteDish')
+                                            button.btn.btn-danger(value=dish[i].id, name='id') X
                     div.text-center
-                        a.btn.btn-success.d-inline.m-3(href='/create-technology-type')  Agregar nuevo formato
+                        a.btn.btn-success.d-inline.m-3(href='/create-dish')  Agregar plato

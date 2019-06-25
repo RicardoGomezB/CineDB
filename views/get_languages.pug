@@ -9,24 +9,24 @@ block content
             .card
                 .card-body
                     .container-fluid.col-sm-8#table
-                        h3#text TIPOS DE REPRODUCCION
+                        h3#text IDIOMAS
                         hr
                         br
                         table.table.bg-white
                             thead.text-center
                                 tr(style="text-align:center;")
                                 th(scope='col') Id
-                                th(scope='col') Descripción
+                                th(scope='col') Idioma
                                 th
                             tbody
-                            -for(let i = 0; i <techType.length; i++)
+                            -for(let i = 0; i <language.length; i++)
                                 tr(style="text-align:center;")
                                     th(scope='row')
-                                        h5 #{techType[i].id}
+                                        h5 #{language[i].id}
                                     td
-                                        h5 #{techType[i].Description}
+                                        h5 #{language[i].Language}
                                     td
-                                        form(method='POST', action='/deleteTechnologyType')
-                                            button.btn.btn-danger(value=techType[i].id, name='id') X
+                                        form(method='POST', action='/deleteLanguage')
+                                            button.btn.btn-danger(value=language[i].id, name='id') X
                     div.text-center
-                        a.btn.btn-success.d-inline.m-3(href='/create-technology-type')  Agregar nuevo formato
+                        a.btn.btn-success.d-inline.m-3(href='/create-language')  Agregar idioma

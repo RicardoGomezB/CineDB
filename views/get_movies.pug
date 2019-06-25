@@ -7,7 +7,7 @@ block content
             .card
                 .card-body
                     div.container-fluid.d-inline.float-left
-                        a.btn.btn-outline-success.m-3.d-inline.mr-5(href="javascript:history.back()") Regresar
+                        a.btn.btn-outline-success.m-3.d-inline.mr-5(href="/administrar") Regresar
                         form.w-50.d-inline.ml-5(method="POST", action="/getMoviesByGenreId" )
                             .col-sm-3.d-inline
                                 select.d-inline.w-25(name='Genre_id', class="form-control", id="Genre_id")
@@ -25,13 +25,14 @@ block content
                             hr
                             br
                             table.table.bg-white
-                                thead
+                                thead.text-center
                                     tr(style="text-align:center;")
                                         th(scope='col') Título
                                         th(scope='col') Descripción
                                         th(scope='col') Duración
                                         th(scope='col') Género
                                         th(scope='col') Fecha de estreno
+                                        th
                                 tbody
                                 -for(let i = 0; i <movie.length; i++)
                                     tr(style="text-align:center;")

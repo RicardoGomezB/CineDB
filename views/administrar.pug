@@ -3,10 +3,36 @@ extends layout
 block content
     .card
         .card-body
-            a.btn.btn-outline-success.btn-lg(href='/get-movies') Peliculas 
-            a.btn.btn-outline-success.btn-lg(href='/get-theaters') Sedes
-            a.btn.btn-outline-success.btn-lg(href='/get-rooms') Salas
-            a.btn.btn-outline-success.btn-lg(href='/get-genres') Generos
-            a.btn.btn-outline-success.btn-lg(href='#') Lenguajes
-            a.btn.btn-outline-success.btn-lg(href='#') Censura
-            a.btn.btn-outline-success.btn-lg(href='#') Tipo de Tecnologia
+            h2.text-center Administracion La Muralla
+    .card
+        .card-body
+            .row.ml-3.mr-3
+                .col.mb-5(style='background-color:white;')
+                    .list-group
+                        a.list-group-item.list-group-item-success.list-group-item-action.active(href='#') Peliculas y caracteristicas
+                            a.list-group-item.list-group-item-action(href='/get-movies') Ver peliculas
+                            a.list-group-item.list-group-item-action(href='/get-genres') Ver generos
+                            a.list-group-item.list-group-item-action(href='/get-languages') Ver lenguajes
+                            a.list-group-item.list-group-item-action(href='/get-subtitles') Ver subtitulos
+                .col.mb-5(style='background-color:white;')
+                    .list-group
+                        a.list-group-item.list-group-item-success.list-group-item-action.active(href='#') Sedes, salas, repertorios y funciones
+                        a.list-group-item.list-group-item-action(href='/get-theaters') Ver sedes
+                        a.list-group-item.list-group-item-action(href='/get-rooms') Ver salas
+                        a.list-group-item.list-group-item-action(href='/get-repertory') Ver repertorios
+                        a.list-group-item.list-group-item-action(href='/get-screenings') Ver funciones
+                .col.mb-5(style='background-color:white;')
+                    .list-group
+                        a.list-group-item.list-group-item-success.list-group-item-action.active(href='#') Confiteria y combos
+                        a.list-group-item.list-group-item-action(href='/get-combos') Ver combos
+                        a.list-group-item.list-group-item-action(href='/get-dishes') Ver platos
+                        a.list-group-item.list-group-item-action(href='/get-dish-types') Ver tipos de platos
+                .col.mb-5(style='background-color:white;')
+                    .list-group
+                        a.list-group-item.list-group-item-success.list-group-item-action.active(href='#') Otras opciones
+                        a.list-group-item.list-group-item-action(href='/get-room-types') Ver tipos de sala
+                        a.list-group-item.list-group-item-action(href='/get-technology-types') Ver tipos de reproduccion
+                        a.list-group-item.list-group-item-action(href='/get-occupied-seats') Ver asientos ocupados
+                        a.list-group-item.list-group-item-action(href='/get-rooms-in-maintenance') Ver salas en mantenimiento
+
+

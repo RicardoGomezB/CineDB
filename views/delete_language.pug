@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .card
+        .card-body
+            .col-sm-9#form
+                h3 ELIMINAR IDIOMA
+                hr
+                br
+                .card
+                    .card-body  
+                        form(method="POST", action="/deleteTechnology" )
+                            .row
+                                .col-sm-3
+                                    select(name='Description', class="form-control", id="Description")
+                                        -for(let i = 0; i < lenguage.length; i++)
+                                            option(value=lenguage[i].Description) #{lenguage[i].Description}
+                            br
+                            button.btn.btn-success.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

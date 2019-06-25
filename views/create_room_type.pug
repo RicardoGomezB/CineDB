@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .card  
+        .card-body
+            .main-container.container-fluid
+                .row
+                .col-md-6.col-md-offset-3
+                    h2 AGREGAR TIPO DE SALA
+                    // register form
+                    form(method='POST' action='/createRoomType')
+                        div.form-group
+                            label(for='Room') Tipo de sala:
+                            input(type='text', name="Description", id="Description",class="form-control")
+                        button.btn.btn-success(type='submit') Agregar tipo de sala

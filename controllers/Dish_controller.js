@@ -27,7 +27,8 @@ controller.GetDishes = async function(callback){
 
 controller.UpdateDish = async function (data){
     let response = Dish.update({
-        Dish_type_id: data.Dish_type_id
+        Dish_type_id: data.Dish_type_id,
+        description: data.description
     },{
         where:{
             id: data.id

@@ -1,0 +1,48 @@
+extends layout
+
+block content
+    .card
+        .card-body
+            form(method="POST", action="/get-movie-repertory" )
+                .row
+                    .col-sm-3
+                        select(name='id', class="form-control", id="id")
+                            -for(let i = 0; i < theaterid.lenght; i++)
+                                option(value=theater[i].id) #{theater[i].id}
+                br
+                button.btn.btn-primary.btn-lg(type="submit" ) Filtrar
+    .card
+        .card-body
+            .container-fluid.row
+                .container-fluid.col-8#table
+                    h3#text REPERTORIO PELÍCULAS 
+                    hr
+                    br
+                    table.table.bg-white
+                        thead
+                            tr(style="text-align:center;")
+                            th(scope='col') Id
+                            th(scope='col') Título
+                            th(scope='col') Inicio
+                            th(scope='col') Fin
+                            th(scope='col') Idioma
+                            th(scope='col') Subtitulo
+                        tbody
+                        -for(let i = 0; i <movie_repertory.length; i++)
+                            tr(style="text-align:center;")
+                                th(scope='row')
+                                    h5 #{movie_repertory[i].Movie.id}
+                                td
+                                    h5 #{movie_repertory[i].Movie.Title}
+                                td
+                                    h5 #{movie_repertory[i].Start_date}
+                                td
+                                    h5 #{movie_repertory[i].End_date}
+                                td
+                                  h5 #{movie_repertory[i].Language.Language}
+                                td
+                                    h5 #{movie_repertory[i].Sutitle.Language.Language}
+
+
+
+                .container.col-3(style='background-color:white;')

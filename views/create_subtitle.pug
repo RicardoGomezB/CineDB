@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .main-container.container-fluid
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR SUBTITULO
+        // register form
+        form(method='POST' action='/createSubtitle')
+          div.form-group
+            label(for='Subtitle') Subtitulo:
+            input(type='text', name="Subtitle", id="Subtitle",class="form-control")
+          button.btn.btn-primary(type='submit') Agregar

@@ -22,3 +22,4 @@ const Technology_type = sequelize.define("Technology_type", {
 
 Technology_type.sync();
 module.exports = Technology_type;
+ 

@@ -15,6 +15,9 @@ const technologyController = require("../controllers/Technology_type_controller"
 const roomController = require("../controllers/Room_controller");
 const roomTypeController = require("../controllers/Room_type_controller");
 const languageController = require("../controllers/Language_controller");
+const subtitleController = require("../controllers/Subtitle_controller");
+const movieRepertoryController = require("../controllers/Movie_repertory_controller");
+
 
 router.get("/", (req, res) => {
   res.render("home", { title: "home" });
@@ -431,6 +434,72 @@ router.post("/createlanguage",(req,res) => {
   languageController.CreateLanguage(req.body);
   res.redirect("/get-language");
 });
+
+/*---------------------------SUBTITLE--------------------------------*/
+/*-----------------GET-------------------*/
+router.get("/get-subtitle",(req,res) => {
+  subtitleController.GetSubtitles((subtitle, err)=> {
+    res.render("get_subtitle", {subtitle});
+  })
+});
+router.get("/create-subtitle",(req,res) => {
+    res.render("create_subtitle");
+});
+/*-----------------POST-------------------*/
+router.post("/createsubtitle",(req,res) => {
+  subtitleController.CreateSubtitle(req.body);
+  res.redirect("/get-subtitle");
+});
+
+
+/*---------------------------MOVIE REPERTORY--------------------------------*/
+router.get("//get-movie-repertory", (req, res) => {
+  let Theater;
+
+  theaterController.GetTheaters((Theater, err) => {
+    Theater = theater;
+  });
+
+  
+ movieRepertoryController.GetMovieRepertories((repertorios, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorios"
+      });
+    else{
+      res.render("./get-movie-repertory", {repertorios, Theater});
+    }
+  })
+});
+
+router.post("/view-repertory", (req, res) => {
+  if(req.body.id_Theater == "todos"){
+    res.redirect("/view-repertory");
+  }else{
+    let Theater;
+    theaterController.GetTheaters((theater, err) => {
+      Theater = theater;
+    });
+    
+    let theaterLoc;
+    theaterController.GetTheatersByID(req.body, (theater, err) => {
+      theaterLoc = Theater[0].Location;  
+    });
+
+    movieRepertoryController.GetMovieRepertoriesByByID(req.body, (repertory, err) => {
+      if(err)
+        res.json({
+          success: false,
+          msg: "Fallo en obtener repertorios"
+        });
+      else{
+        res.render("./repertory/view-repertory", {repertory, Theater, theaterLoc});
+      }
+    })
+  }
+})
+
 /*-------------------------------------------------------------
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
